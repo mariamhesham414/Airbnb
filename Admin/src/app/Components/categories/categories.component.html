@@ -1,0 +1,29 @@
+<div class="container">
+  <button class="btn btn-primary m-3" (click)="addCategory()">
+    Add New Category
+  </button>
+  <ul class="list-group">
+    <li
+      class="list-group-item d-flex justify-content-between align-items-center"
+      *ngFor="let category of categories"
+    >
+      <div class="d-flex align-items-center">
+        <h5 class="mb-1">{{ category.name }}</h5>
+      </div>
+      <div>
+        <button
+          class="btn btn-sm btn-info m-2"
+          (click)="editCategory(category._id!)"
+        >
+          Edit
+        </button>
+        <button
+          class="btn btn-sm btn-danger m-2"
+          (click)="deleteCategory(category._id!)"
+        >
+          Delete
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>
