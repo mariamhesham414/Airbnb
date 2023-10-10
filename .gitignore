@@ -1,1 +1,4 @@
+/Admin/node_modules/
+/Client/node_modules/
+/Server/node_modules/
 Server/config.env
