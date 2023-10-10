@@ -15,16 +15,15 @@ const upload = multer({
   fileFilter: multerFilter,
 });
 
-exports.uploadHouseImages = upload.array("images", 10);
+exports.uploadHouseImages = upload.array("images", 20);
 
-exports.resizeHouseImages = (req, res, next) => {
+exports.resizeHouseImages = async (req, res, next) => {
   if (!req.files || req.files.length === 0) return next();
 
   req.body.images = [];
 
-  req.files.forEach((file) => {
-    // const ext = file.mimetype.split("/")[1];
-    const filename = `house-${Date.now()}.jpeg`;
+  req.files.forEach(async (file) => {
+    const filename = `house-${Date.now()}${Math.random() * 1000}.jpeg`;
 
     sharp(file.buffer)
       .resize(750, 500)
