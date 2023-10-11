@@ -19,13 +19,17 @@ const UpperPart = ({ house }) => {
 
       <div className="hidden md:flex justify-between items-center font-semibold mt-1 text-sm lg:text-xl">
         <div className="flex items-center justify-center space-x-2">
-          <div className="fond-semibold flex gap-1">
-            <span className="">
-              <FaStar />
-            </span>
-            <p>5</p>
-          </div>
-          <p className="underline">54 reviews .</p>
+          {house.rate ? (
+            <div className="fond-semibold flex gap-1">
+              <span className="">
+                <FaStar />
+              </span>
+              <p>5</p>
+            </div>
+          ) : (
+            <span>New</span>
+          )}
+          {house.reviews && <p className="underline">{house.reviews.length}</p>}
 
           <span className="mb-3">
             {" "}
@@ -64,6 +68,7 @@ const HomeDetails = () => {
       .get(`/houses/${id}`)
       .then((res) => {
         setHouse(() => res.data.data.house);
+        console.log(res.data.data.house);
       })
       .catch(() => navigate(-1));
   }, [id]);
