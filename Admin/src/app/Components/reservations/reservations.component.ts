@@ -1,15 +1,16 @@
-import { IReservation } from 'src/app/Models/IReservation';
-import { ReservationsService } from './../../Services/reservations.service';
-import { Component, OnInit } from '@angular/core';
+import { IReservation } from "src/app/Models/IReservation";
+import { ReservationsService } from "./../../Services/reservations.service";
+import { Component, OnInit } from "@angular/core";
+import { environment } from "src/environments/environment";
 
 @Component({
-  selector: 'app-reservations',
-  templateUrl: './reservations.component.html',
-  styleUrls: ['./reservations.component.css'],
+  selector: "app-reservations",
+  templateUrl: "./reservations.component.html",
+  styleUrls: ["./reservations.component.css"],
 })
 export class ReservationsComponent implements OnInit {
   reservations: IReservation[] = [];
-
+  url = environment.BaseApiURL;
   constructor(private reservationsService: ReservationsService) {}
 
   ngOnInit(): void {
@@ -27,11 +28,11 @@ export class ReservationsComponent implements OnInit {
     return durationInMilliseconds / 1000 / 60 / 60 / 24;
   }
 
-  options: object = { year: 'numeric', month: 'long', day: 'numeric' };
+  options: object = { year: "numeric", month: "long", day: "numeric" };
 
   formattedDate(inputDateString: Date): string {
     const inputDate = new Date(inputDateString);
 
-    return inputDate.toLocaleDateString('en-US', this.options);
+    return inputDate.toLocaleDateString("en-US", this.options);
   }
 }
