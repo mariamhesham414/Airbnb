@@ -9,7 +9,7 @@ import { ReservationsComponent } from "./Components/reservations/reservations.co
 import { TeamComponent } from "./Components/team/team.component";
 import { SignInComponent } from "./Components/sign-in/sign-in.component";
 import { AdminGuard } from "./Guards/admin.guard";
-import { HouseDetailsComponent } from "./house-details/house-details.component";
+import { HouseDetailsComponent } from "./Components/house-details/house-details.component";
 
 const routes: Routes = [
   { path: "signin", component: SignInComponent, data: { title: "Login" } },

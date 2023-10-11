@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { IHouse } from "../Models/IHouse";
-import { HousesService } from "../Services/houses.service";
+import { IHouse } from "../../Models/IHouse";
+import { HousesService } from "../../Services/houses.service";
 import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
