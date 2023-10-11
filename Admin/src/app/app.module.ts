@@ -16,7 +16,7 @@ import { TeamComponent } from "./Components/team/team.component";
 import { SignInComponent } from "./Components/sign-in/sign-in.component";
 import { AuthInterceptor } from "./Interceptors/auth.interceptor";
 import { HouseDetailsComponent } from "./Components/house-details/house-details.component";
-import { ReportsComponent } from "./reports/reports.component";
+import { ReportsComponent } from "./Components/reports/reports.component";
 
 @NgModule({
   declarations: [

@@ -10,6 +10,7 @@ import { TeamComponent } from "./Components/team/team.component";
 import { SignInComponent } from "./Components/sign-in/sign-in.component";
 import { AdminGuard } from "./Guards/admin.guard";
 import { HouseDetailsComponent } from "./Components/house-details/house-details.component";
+import { ReportsComponent } from "./Components/reports/reports.component";
 
 const routes: Routes = [
   { path: "signin", component: SignInComponent, data: { title: "Login" } },
@@ -57,6 +58,12 @@ const routes: Routes = [
         component: TeamComponent,
         data: { title: "Team Page" },
       },
+      {
+        path: "reports",
+        component: ReportsComponent,
+        data: { title: "Reports Page" },
+      },
+
       { path: "house-details/:id", component: HouseDetailsComponent },
       { path: "", redirectTo: "/home", pathMatch: "full" },
       { path: "**", redirectTo: "/home", pathMatch: "full" },
