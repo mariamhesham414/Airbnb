@@ -4,8 +4,10 @@ export interface IReservation {
   houseId: {
     _id: string;
     name: string;
+    price: number;
   };
   checkIn: Date;
   checkOut: Date;
   price: number;
+  createdAt: Date;
 }
