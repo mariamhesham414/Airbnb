@@ -41,9 +41,9 @@ exports.getAllHouses = async (req, res, next) => {
   try {
     const features = new ApiFeatures(House.find(), req.query)
       .filter()
-      .sorting()
-      .feildsSelect()
-      .pageination();
+      // .sorting()
+      .feildsSelect();
+    // .pageination();
     console.log(req.query);
     const houses = await features.query;
 

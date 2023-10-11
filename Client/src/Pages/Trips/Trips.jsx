@@ -116,7 +116,7 @@ const Trips = () => {
             position: "absolute",
           }}
         >
-          <h1 className="m-auto mx-30">No WishList</h1>
+          <h1 className="m-auto mx-30">No Reservations</h1>
         </div>
       )}
     </>
