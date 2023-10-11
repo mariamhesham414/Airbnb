@@ -4,10 +4,11 @@ import "./Trips.css";
 import { FcHome } from "react-icons/fc";
 import { TbHomeOff } from "react-icons/tb";
 import instance from "../../AxiosConfig/instance";
+import { useNavigate } from "react-router-dom";
 
 const Trips = () => {
   const [reservations, setReservations] = useState([]);
-
+  const navigate = useNavigate();
   const cancleReservation = (id) => {
     if (confirm("Are you sure you want to cancle this reservation ?")) {
       instance.delete(`/reservations/${id}`).then((res) => {
@@ -21,6 +22,10 @@ const Trips = () => {
       setReservations(res.data.data.reservations);
       console.log(res.data.data.reservations);
     });
+  };
+
+  const navigateToDetails = (id) => {
+    navigate(`/homedetails/${id}`);
   };
 
   useEffect(() => {
@@ -46,7 +51,14 @@ const Trips = () => {
                   <div className="ticket">
                     <div className="ticketTitle px-5 pt-4 d-flex justify-content-between">
                       <div className="text-center col-lg-2 col-md-2 col-3 d-flex flex-column">
-                        <h4 className="mb-1">{reservation.houseId.name}</h4>
+                        <h4
+                          className="mb-1"
+                          onClick={() =>
+                            navigateToDetails(reservation.houseId._id)
+                          }
+                        >
+                          {reservation.houseId.name}
+                        </h4>
                       </div>
                       <div className="d-flex align-items-center col-lg-8 col-md-8 col-6">
                         <div className="progressTrip ">
