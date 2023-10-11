@@ -1,63 +1,65 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HousesComponent } from './Components/houses/houses.component';
-import { AddHouseComponent } from './Components/add-house/add-house.component';
-import { CategoriesComponent } from './Components/categories/categories.component';
-import { AddCategoryComponent } from './Components/add-category/add-category.component';
-import { UsersComponent } from './Components/users/users.component';
-import { ReservationsComponent } from './Components/reservations/reservations.component';
-import { TeamComponent } from './Components/team/team.component';
-import { SignInComponent } from './Components/sign-in/sign-in.component';
-import { AdminGuard } from './Guards/admin.guard';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { HousesComponent } from "./Components/houses/houses.component";
+import { AddHouseComponent } from "./Components/add-house/add-house.component";
+import { CategoriesComponent } from "./Components/categories/categories.component";
+import { AddCategoryComponent } from "./Components/add-category/add-category.component";
+import { UsersComponent } from "./Components/users/users.component";
+import { ReservationsComponent } from "./Components/reservations/reservations.component";
+import { TeamComponent } from "./Components/team/team.component";
+import { SignInComponent } from "./Components/sign-in/sign-in.component";
+import { AdminGuard } from "./Guards/admin.guard";
+import { HouseDetailsComponent } from "./house-details/house-details.component";
 
 const routes: Routes = [
-  { path: 'signin', component: SignInComponent, data: { title: 'Login' } },
+  { path: "signin", component: SignInComponent, data: { title: "Login" } },
   {
-    path: '',
+    path: "",
     canActivate: [AdminGuard],
     children: [
       {
-        path: 'home',
+        path: "home",
         component: HousesComponent,
-        data: { title: 'Home Page' },
+        data: { title: "Home Page" },
       },
       {
-        path: 'houses',
+        path: "houses",
         component: HousesComponent,
-        data: { title: 'Houses Page' },
+        data: { title: "Houses Page" },
       },
       {
-        path: 'add-house/:id',
+        path: "add-house/:id",
         component: AddHouseComponent,
-        data: { title: 'Add House' },
+        data: { title: "Add House" },
       },
       {
-        path: 'categories',
+        path: "categories",
         component: CategoriesComponent,
-        data: { title: 'Categories Page' },
+        data: { title: "Categories Page" },
       },
       {
-        path: 'add-category/:id',
+        path: "add-category/:id",
         component: AddCategoryComponent,
-        data: { title: 'Add Category' },
+        data: { title: "Add Category" },
       },
       {
-        path: 'users',
+        path: "users",
         component: UsersComponent,
-        data: { title: 'Users Page' },
+        data: { title: "Users Page" },
       },
       {
-        path: 'reservations',
+        path: "reservations",
         component: ReservationsComponent,
-        data: { title: 'Reservations Page' },
+        data: { title: "Reservations Page" },
       },
       {
-        path: 'team',
+        path: "team",
         component: TeamComponent,
-        data: { title: 'Team Page' },
+        data: { title: "Team Page" },
       },
-      { path: '', redirectTo: '/home', pathMatch: 'full' },
-      { path: '**', redirectTo: '/home', pathMatch: 'full' },
+      { path: "house-details/:id", component: HouseDetailsComponent },
+      { path: "", redirectTo: "/home", pathMatch: "full" },
+      { path: "**", redirectTo: "/home", pathMatch: "full" },
     ],
   },
 ];

@@ -15,6 +15,8 @@ import { NavigationComponent } from './Components/navigation/navigation.componen
 import { TeamComponent } from './Components/team/team.component';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { AuthInterceptor } from './Interceptors/auth.interceptor';
+import { HouseDetailsComponent } from './house-details/house-details.component';
+import { ReportsComponent } from './reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { AuthInterceptor } from './Interceptors/auth.interceptor';
     NavigationComponent,
     TeamComponent,
     SignInComponent,
+    HouseDetailsComponent,
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,

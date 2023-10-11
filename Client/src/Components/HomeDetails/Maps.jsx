@@ -5,7 +5,6 @@ import Map, {
   Marker,
   NavigationControl,
 } from "react-map-gl";
-import { useState } from "react";
 
 const Maps = ({ house }) => {
   return (
