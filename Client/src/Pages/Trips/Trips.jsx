@@ -8,18 +8,25 @@ import instance from "../../AxiosConfig/instance";
 const Trips = () => {
   const [reservations, setReservations] = useState([]);
 
-  useEffect(() => {
+  const cancleReservation = (id) => {
+    if (confirm("Are you sure you want to cancle this reservation ?")) {
+      instance.delete(`/reservations/${id}`).then((res) => {
+        fetchReservations();
+      });
+    }
+  };
+
+  const fetchReservations = () => {
     instance.get("/reservations/me").then((res) => {
       setReservations(res.data.data.reservations);
       console.log(res.data.data.reservations);
     });
+  };
+
+  useEffect(() => {
+    fetchReservations();
   }, []);
 
-  const cancleReservation = (id) => {
-    instance.delete(`/reservations/${id}`).then((res) => {
-      console.log(res);
-    });
-  };
   const options = { year: "numeric", month: "long", day: "numeric" };
 
   const formattedDate = (inputDateString) => {
@@ -35,7 +42,7 @@ const Trips = () => {
           <div className="container p-5 ">
             {reservations.map((reservation) => {
               return (
-                <div className="ticketContainer my-4">
+                <div className="ticketContainer my-4" key={reservation._id}>
                   <div className="ticket">
                     <div className="ticketTitle px-5 pt-4 d-flex justify-content-between">
                       <div className="text-center col-lg-2 col-md-2 col-3 d-flex flex-column">
