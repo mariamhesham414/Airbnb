@@ -74,76 +74,78 @@ const HomeDetails = () => {
   }, [id]);
 
   return (
-    <div className="p-2">
-      <div className="md:px-20 mt-9">
-        <UpperPart house={house} />
+    house && (
+      <div className="p-2">
+        <div className="md:px-20 mt-9">
+          <UpperPart house={house} />
 
-        <div className="mt-5 ">
-          <Photogrid images={house.images} />
-        </div>
-
-        <div className="">
-          {Object.keys(house).length > 0 && <MiddleSection house={house} />}
-        </div>
-
-        <div className="w-full h-[1px] bg-gray-500 mt-24"></div>
-
-        <div className="mt-10 p-2 ">
-          <div className="flex items-center gap-2 text-xl font-semibold">
-            <h1>
-              <span className="">
-                <FaStar size={20} />
-              </span>
-              4.7
-            </h1>
-            <p> 3 reviews</p>
+          <div className="mt-5 ">
+            <Photogrid images={house.images} />
           </div>
-          <div className="mt-5">
-            <Review />
+
+          <div className="">
+            {Object.keys(house).length > 0 && <MiddleSection house={house} />}
           </div>
+
           <div className="w-full h-[1px] bg-gray-500 mt-24"></div>
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2  md:gap-x-10">
-            <Comments />
 
-            <Comments />
+          <div className="mt-10 p-2 ">
+            <div className="flex items-center gap-2 text-xl font-semibold">
+              <h1>
+                <span className="">
+                  <FaStar size={20} />
+                </span>
+                4.7
+              </h1>
+              <p> 3 reviews</p>
+            </div>
+            <div className="mt-5">
+              <Review />
+            </div>
+            <div className="w-full h-[1px] bg-gray-500 mt-24"></div>
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-2  md:gap-x-10">
+              <Comments />
 
-            <Comments />
-          </div>
+              <Comments />
 
-          <div className="mt-9">
-            <Line />
-          </div>
+              <Comments />
+            </div>
 
-          <div className="w-full p-0 md:p-8 mt-9 overflow-hidden">
-            <h1 className="text-black text-xl font-semibold text-left">
-              Where you’ll be
-            </h1>
-            <div className="mt-6">
-              <Maps />
+            <div className="mt-9">
+              <Line />
+            </div>
+
+            <div className="w-full p-0 md:p-8 mt-9 overflow-hidden">
+              <h1 className="text-black text-xl font-semibold text-left">
+                Where you’ll be
+              </h1>
+              <div className="mt-6">
+                {Object.keys(house).length > 0 && <Maps house={house} />}
+              </div>
+            </div>
+
+            <div className="text-left mt-3 flex flex-col gap-3">
+              <p className="font-bold">Gyza</p>
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas
+                porro ullam a quisquam vero rem aliquid ea. Ipsam facere iste
+                unde error quam est, exercitationem, iusto architecto excepturi
+                soluta eius.
+              </p>
+              <p>
+                The HATCH is directly on HIN KONG BEACH FRONT! Ocean views, on
+                the beach - sandy feet very welcome!!
+              </p>
+              <p className="underline font-semibold">Show More</p>
             </div>
           </div>
+        </div>
 
-          <div className="text-left mt-3 flex flex-col gap-3">
-            <p className="font-bold">Gyza</p>
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas
-              porro ullam a quisquam vero rem aliquid ea. Ipsam facere iste unde
-              error quam est, exercitationem, iusto architecto excepturi soluta
-              eius.
-            </p>
-            <p>
-              The HATCH is directly on HIN KONG BEACH FRONT! Ocean views, on the
-              beach - sandy feet very welcome!!
-            </p>
-            <p className="underline font-semibold">Show More</p>
-          </div>
+        <div className="mt-9">
+          <Footer />
         </div>
       </div>
-
-      <div className="mt-9">
-        <Footer />
-      </div>
-    </div>
+    )
   );
 };
 

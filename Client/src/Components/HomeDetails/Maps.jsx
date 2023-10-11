@@ -7,10 +7,7 @@ import Map, {
 } from "react-map-gl";
 import { useState } from "react";
 
-const Maps = () => {
-  const [lng, setlng] = useState(54.37585762735543);
-  const [lat, setLat] = useState(24.45677614934833);
-
+const Maps = ({ house }) => {
   return (
     <div className="overflow-hidden">
       <Map
@@ -21,12 +18,13 @@ const Maps = () => {
           overflow: "hidden",
         }}
         initialViewState={{
-          longitude: lng,
-          latitude: lat,
+          longitude: house.lng,
+          latitude: house.lat,
+          zoom: 6,
         }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
-        <Marker longitude={lng} latitude={lat} />
+        <Marker longitude={house.lng} latitude={house.lat} />
         <NavigationControl />
         <FullscreenControl />
       </Map>
