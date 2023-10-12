@@ -57,4 +57,12 @@ export class HouseDetailsComponent implements OnInit {
         console.log(this.reservations);
       });
   }
+
+  options: object = { year: "numeric", month: "long", day: "numeric" };
+
+  formattedDate(inputDateString: Date): string {
+    const inputDate = new Date(inputDateString);
+
+    return inputDate.toLocaleDateString("en-US", this.options);
+  }
 }
