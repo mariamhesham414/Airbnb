@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
-import { IReservation } from '../Models/IReservation';
-import { environment } from 'src/environments/environment';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable, map } from "rxjs";
+import { IReservation } from "../Models/IReservation";
+import { environment } from "src/environments/environment";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class ReservationsService {
   constructor(private httpClient: HttpClient) {}
@@ -28,10 +28,16 @@ export class ReservationsService {
       .pipe(map((res: any) => res.data.reservations));
   }
 
-  getReservationsByHouseId(id: string): Observable<IReservation> {
+  getReservationsByHouseId(id: string): Observable<IReservation[]> {
     return this.httpClient
       .get(`${environment.BaseApiURL}/reservations/house/${id}`)
-      .pipe(map((res: any) => res.data.reservations));
+      .pipe(
+        map((res: any) => {
+          console.log(res.data.reservarions);
+
+          return res.data.reservations;
+        })
+      );
   }
 
   deleteReservation(id: string) {

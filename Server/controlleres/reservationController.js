@@ -175,7 +175,7 @@ exports.getReservationsByUserId = async (req, res, next) => {
 exports.getReservationsByHouseId = async (req, res, next) => {
   try {
     const reservations = await Reservation.find({
-      houseId: req.params.houseId,
+      houseId: req.params.id,
     });
 
     res.status(200).json({

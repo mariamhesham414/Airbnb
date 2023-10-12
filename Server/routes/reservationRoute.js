@@ -13,7 +13,7 @@ router.post("/", reservationController.payment);
 
 router.use(authController.restrictTo("admin"));
 
-router.route("/user/:id").get(reservationController.getReservationsByUserId);
+router.get("/user/:id", reservationController.getReservationsByUserId);
 router.get("/house/:id", reservationController.getReservationsByHouseId);
 router.get("/", reservationController.getAllReservations);
 

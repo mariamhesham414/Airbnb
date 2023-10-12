@@ -1,7 +1,9 @@
+import { ReservationsService } from "./../../Services/reservations.service";
 import { Component, OnInit } from "@angular/core";
 import { IHouse } from "../../Models/IHouse";
 import { HousesService } from "../../Services/houses.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { IReservation } from "src/app/Models/IReservation";
 
 @Component({
   selector: "app-house-details",
@@ -30,8 +32,11 @@ export class HouseDetailsComponent implements OnInit {
     updatedAt: new Date(),
   };
 
+  reservations: IReservation[] = [];
+
   constructor(
     private houseService: HousesService,
+    private reservationsService: ReservationsService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -42,8 +47,14 @@ export class HouseDetailsComponent implements OnInit {
     } else {
       this.houseService.getHouseById(houseId).subscribe((house: IHouse) => {
         this.currentHouse = house;
+        console.log(this.currentHouse);
       });
-      console.log(this.currentHouse);
     }
+    this.reservationsService
+      .getReservationsByHouseId(houseId!)
+      .subscribe((reservations: IReservation[]) => {
+        this.reservations = reservations;
+        console.log(this.reservations);
+      });
   }
 }
