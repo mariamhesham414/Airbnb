@@ -117,12 +117,14 @@ const HomeDetails = () => {
             )}
 
             {house.rate && (
-              <div className="mt-5">
-                <Review rate={house.rate} />
-              </div>
+              <>
+                <div className="mt-5">
+                  <Review rate={house.rate} />
+                </div>
+                <div className="w-full h-[1px] bg-gray-500 mt-24"></div>
+              </>
             )}
 
-            <div className="w-full h-[1px] bg-gray-500 mt-24"></div>
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2  md:gap-x-10">
               {reviews &&
                 reviews.map((rev) => {
