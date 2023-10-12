@@ -136,7 +136,9 @@ const HomeDetails = () => {
               <Comments /> */}
             </div>
 
-            {Object.keys(house).length > 0 && <Rate id={house._id} />}
+            {Object.keys(house).length > 0 && (
+              <Rate id={house._id} fetchReviews={fetchReviews} />
+            )}
             <div className="mt-9">
               <Line />
             </div>

@@ -29,6 +29,7 @@ export default function StarsRating({
   messages = [],
   defaultRating = 0,
   id,
+  fetchReviews,
 }) {
   const textStyle = {
     color,
@@ -43,7 +44,11 @@ export default function StarsRating({
     if (!comment || rate < 1) return alert("Please enter a comment an rate");
     axiosInstance
       .post("/reviews", { houseId: id, rate, review: comment })
-      .then((res) => console.log(res));
+      .then((res) => {
+        setRate(0);
+        setComment("");
+        fetchReviews();
+      });
   };
   const handleRate = (rating) => {
     setRate(() => rating);
@@ -82,11 +87,12 @@ export default function StarsRating({
             rows="10"
             className="border h-20 w-75"
             placeholder="Comment"
+            value={comment}
             onChange={(e) => {
               setComment(e.target.value);
               console.log(comment);
             }}
-          ></textarea>
+          />
         </div>
         <div
           className="btn btn-secondary fw-medium rounded-1 px-4 py-2"
