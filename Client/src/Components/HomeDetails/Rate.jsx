@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import axiosInstance from "../../AxiosConfig/instance";
 
 const containerStyle = {
   display: "flex",
@@ -27,6 +28,7 @@ export default function StarsRating({
   className = "",
   messages = [],
   defaultRating = 0,
+  id,
 }) {
   const textStyle = {
     color,
@@ -37,6 +39,12 @@ export default function StarsRating({
   const [tempRating, setTempRating] = useState(0);
   const [comment, setComment] = useState("");
 
+  const handleRateChange = () => {
+    if (!comment || rate < 1) return alert("Please enter a comment an rate");
+    axiosInstance
+      .post("/reviews", { houseId: id, rate, review: comment })
+      .then((res) => console.log(res));
+  };
   const handleRate = (rating) => {
     setRate(() => rating);
   };
@@ -59,11 +67,11 @@ export default function StarsRating({
                 />
               ))}
             </div>
-            <p style={textStyle}>
+            {/* <p style={textStyle}>
               {messages.length === maxValue
                 ? messages[tempRating ? tempRating - 1 : rate - 1]
                 : tempRating || rate || ""}
-            </p>
+            </p> */}
           </div>
         </div>
         <div className="comment">
@@ -74,10 +82,16 @@ export default function StarsRating({
             rows="10"
             className="border h-20 w-75"
             placeholder="Comment"
-            onChange={(e) => setComment(e.target.value)}
+            onChange={(e) => {
+              setComment(e.target.value);
+              console.log(comment);
+            }}
           ></textarea>
         </div>
-        <div className="btn btn-secondary fw-medium rounded-1 px-4 py-2">
+        <div
+          className="btn btn-secondary fw-medium rounded-1 px-4 py-2"
+          onClick={handleRateChange}
+        >
           Finish
         </div>
       </div>

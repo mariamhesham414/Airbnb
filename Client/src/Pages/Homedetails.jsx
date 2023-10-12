@@ -105,7 +105,7 @@ const HomeDetails = () => {
             </div>
             <div className="w-full h-[1px] bg-gray-500 mt-24"></div>
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2  md:gap-x-10">
-              <Rate />
+              {Object.keys(house).length > 0 && <Rate id={house._id} />}
               <Comments />
 
               <Comments />
