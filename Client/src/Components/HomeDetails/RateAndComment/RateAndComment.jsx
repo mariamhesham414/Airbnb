@@ -4,17 +4,14 @@ import { AiOutlineStar } from "react-icons/ai";
 import { AiFillStar } from "react-icons/ai";
 import { FcHome } from "react-icons/fc";
 import { TbHomeOff } from "react-icons/tb";
+import StarsRating from "../Rate";
 
 const RateAndComment = () => {
   return (
     <>
       <div className="container mt-5">
         <div className="rate d-flex mb-3">
-          <AiFillStar className="star" color="yellow" size={"25px"} />
-          <AiFillStar className="star" color="yellow" size={"25px"} />
-          <AiOutlineStar className="star" color="yellow" size={"25px"} />
-          <AiOutlineStar className="star" color="yellow" size={"25px"} />
-          <AiOutlineStar className="star" color="yellow" size={"25px"} />
+          <StarsRating />
         </div>
         <div className="comment">
           <textarea

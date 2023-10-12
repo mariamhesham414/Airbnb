@@ -6,6 +6,7 @@ import Review from "../Components/HomeDetails/Review";
 import Comments from "../Components/HomeDetails/Comments";
 import Maps from "../Components/HomeDetails/Maps";
 import Footer from "../Components/HomeDetails/Footer";
+import Rate from "../Components/HomeDetails/Rate";
 import { FaStar, FaMapMarkerAlt, FaShareAlt, FaHeart } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import axiosInstance from "../AxiosConfig/instance";
@@ -104,6 +105,7 @@ const HomeDetails = () => {
             </div>
             <div className="w-full h-[1px] bg-gray-500 mt-24"></div>
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2  md:gap-x-10">
+              <Rate />
               <Comments />
 
               <Comments />
