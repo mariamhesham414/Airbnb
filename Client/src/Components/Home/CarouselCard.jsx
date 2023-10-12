@@ -179,27 +179,27 @@ export default function CarouselCard({ location, wishlist }) {
               {" "}
               {location.name}
             </Typography>
-            <Typography component="h4"> {location.days}</Typography>
-            <Typography component="h4"> {location.days}</Typography>
+            <Typography component="h4"> {location.category.name}</Typography>
+            <Typography component="h4"> {location.region}</Typography>
             <Typography style={{ fontWeight: "bold" }} component="h5">
               {" "}
-              {location.price}
+              $ {location.price} night
             </Typography>
           </Box>
           <Box sx={{ mt: 2 }}>
-            {/* <Box sx={dFlex}>
-              {location.isNew ? (
+            <Box sx={dFlex}>
+              {location.rate ? (
                 <React.Fragment>
-                  <Typography component="h5">New</Typography>
+                  <Typography component="h5"> {location.rate}</Typography>
                   <AiFillStar size={18} />
                 </React.Fragment>
               ) : (
                 <React.Fragment>
-                  <Typography component="h5"> {location.rating}</Typography>
+                  <Typography component="h5">New</Typography>
                   <AiFillStar size={18} />
                 </React.Fragment>
               )}
-            </Box> */}
+            </Box>
           </Box>
         </Box>
       </Box>

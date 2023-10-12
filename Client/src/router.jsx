@@ -19,7 +19,7 @@ import TravelForWork from "./Components/Account/TravelForWork/TravelForWork";
 import SuccessPayment from "./Pages/SuccessPayment";
 import SomethingWrong from "./Pages/SomethingWrong";
 import Homes from "./Pages/Homes/Homes";
-
+import MapHomPage from "./Components/Home/MapHomPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +33,7 @@ const router = createBrowserRouter([
       { path: "/trips", element: <Trips /> },
       { path: "/success", element: <SuccessPayment /> },
       { path: "/failed", element: <SomethingWrong /> },
+      { path: "/map", element: <MapHomPage /> },
       {
         path: "/account",
         element: <Account />,
@@ -49,7 +50,6 @@ const router = createBrowserRouter([
       { path: "account/privacyAndSharing", element: <PrivacyAndSharing /> },
       { path: "account/globalPreferences", element: <GlobalPreferences /> },
       { path: "account/travelForWork", element: <TravelForWork /> },
-
       // { path: "/reservation", element: <Reservation /> },
       // { path: "/account", element: <Account /> },
       // { path: "/personalInfo", element: <PersonalInfo /> },

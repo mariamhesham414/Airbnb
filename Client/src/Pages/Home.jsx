@@ -8,7 +8,7 @@ import { StyledEngineProvider } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import DisplayTotalPrice from "../Components/Home/DisplayTotalPrice";
 import ShowMap from "../Components/Home/ShowMap";
-import MapViwe from "../Components/Home/Map";
+
 import "maplibre-gl/dist/maplibre-gl.css";
 
 const Home = () => {
@@ -41,7 +41,6 @@ const Home = () => {
             </Container>
           </Box>
         </Box>
-        <MapViwe />
       </StyledEngineProvider>
     </>
   );

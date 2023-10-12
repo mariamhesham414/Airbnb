@@ -16,29 +16,31 @@ export default function WishList() {
   // }, []);
   console.log(cards);
   return (
-    <Box sx={{ mx: 2 }}>
-      <Grid container rowSpacing={3} columnSpacing={3}>
-        {Object.keys(cards).length > 0 ? (
-          cards.map((location) => {
-            return (
-              <Grid key={location._id} xs={12} sm={6} md={4} lg={3}>
-                <CarouselCard location={location} wishlist={cards} />
-              </Grid>
-            );
-          })
-        ) : (
-          <div
-            className="d-flex justify-content-center align-items-center"
-            style={{
-              width: "100%",
-              height: "-webkit-fill-available",
-              position: "absolute",
-            }}
-          >
-            <h1 className="m-auto mx-30">No WishList</h1>
-          </div>
-        )}
-      </Grid>
-    </Box>
+    <div className="m-5">
+      <Box sx={{ mx: 2 }}>
+        <Grid container rowSpacing={3} columnSpacing={3}>
+          {Object.keys(cards).length > 0 ? (
+            cards.map((location) => {
+              return (
+                <Grid key={location._id} xs={12} sm={6} md={4} lg={3}>
+                  <CarouselCard location={location} wishlist={cards} />
+                </Grid>
+              );
+            })
+          ) : (
+            <div
+              className="d-flex justify-content-center align-items-center"
+              style={{
+                width: "100%",
+                height: "-webkit-fill-available",
+                position: "absolute",
+              }}
+            >
+              <h1 className="m-auto mx-30">No WishList</h1>
+            </div>
+          )}
+        </Grid>
+      </Box>
+    </div>
   );
 }

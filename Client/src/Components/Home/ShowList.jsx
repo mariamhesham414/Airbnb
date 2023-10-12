@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 // import { ThemeProvider, createTheme } from '@mui/material/styles';
 // import { Button } from '@mui/material';
 
-export default function ShowMap() {
+export default function ShowList() {
   const navigate = useNavigate();
   const navigateToMap = () => {
-    navigate(`/map`);
+    navigate(`/`);
   };
   return (
     <>
@@ -38,7 +38,7 @@ export default function ShowMap() {
             variant: "black",
           }}
         >
-          Show map <FaMap style={{ marginLeft: "3px" }} />
+          Show list <FaMap style={{ marginLeft: "3px" }} />
         </ButtonBase>
       </Box>
     </>
