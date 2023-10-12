@@ -1,25 +1,21 @@
 import React from "react";
 
-const Comments = () => {
+const Comments = ({ review }) => {
   return (
     <div className=" flex flex-col text-left  py-3">
       <div className="flex md:items-center gap-2 md:gap-4">
         <img
-          src="/images/owner.jpg"
+          src="https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg"
           alt=""
           className="h-14 w-14 object-fit rounded-full mt-1"
         />
         <div className="flex flex-col text-left">
-          <p className="font-semibold">Ciprian</p>
-          <p className="text-sm">April 2023</p>
+          <p className="font-semibold">{review.userId.name}</p>
+          <p className="text-sm">{review.createdAt}</p>
         </div>
       </div>
       <div className="md:mt-4 text-gray-600">
-        <p>
-          From point of booking onwards, Rachel and team were exceptionally
-          approachable, helpful, friendly and well organised. The listing for
-          the accommodation made us fall in
-        </p>
+        <p>{review.review}</p>
       </div>
     </div>
   );

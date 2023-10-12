@@ -1,27 +1,30 @@
 const mongoose = require("mongoose");
 const House = require("./houseModel");
 
-const rivewsSchema = new mongoose.Schema({
-  houseId: {
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: "house",
+const rivewsSchema = new mongoose.Schema(
+  {
+    houseId: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "house",
+    },
+    userId: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "user",
+    },
+    rate: {
+      type: Number,
+      min: 1,
+      max: 5,
+      default: 1,
+      require: true,
+    },
+    review: {
+      type: String,
+      require: true,
+    },
   },
-  userId: {
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: "user",
-  },
-  rate: {
-    type: Number,
-    min: 1,
-    max: 5,
-    default: 1,
-    require: true,
-  },
-  rivew: {
-    type: String,
-    require: true,
-  },
-});
+  { timestamps: true }
+);
 
 rivewsSchema.pre("save", async function (next) {
   try {
@@ -54,8 +57,8 @@ rivewsSchema.pre("save", async function (next) {
 
 rivewsSchema.pre(/^find/, function (next) {
   this.populate({
-    path: "houseId",
-    select: "-__v",
+    path: "userId",
+    select: "name",
   });
   next();
 });

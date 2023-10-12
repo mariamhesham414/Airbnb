@@ -25,7 +25,7 @@ const UpperPart = ({ house }) => {
               <span className="">
                 <FaStar />
               </span>
-              <p>5</p>
+              <p>{house.rate}</p>
             </div>
           ) : (
             <span>New</span>
@@ -61,7 +61,7 @@ const UpperPart = ({ house }) => {
 
 const HomeDetails = () => {
   const [house, setHouse] = useState({});
-
+  const [reviews, setReviews] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -70,9 +70,20 @@ const HomeDetails = () => {
       .then((res) => {
         setHouse(() => res.data.data.house);
         console.log(res.data.data.house);
+        fetchReviews();
       })
       .catch(() => navigate(-1));
   }, [id]);
+
+  const fetchReviews = () => {
+    axiosInstance
+      .get(`/reviews/house/${id}/`)
+      .then((res) => {
+        setReviews(() => res.data.data.reviews);
+        // console.log(res.data.data.rivews);
+      })
+      .catch(() => navigate(-1));
+  };
 
   return (
     house && (
@@ -105,14 +116,17 @@ const HomeDetails = () => {
             </div>
             <div className="w-full h-[1px] bg-gray-500 mt-24"></div>
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2  md:gap-x-10">
-              {Object.keys(house).length > 0 && <Rate id={house._id} />}
+              {reviews &&
+                reviews.map((rev) => {
+                  return <Comments review={rev} />;
+                })}
+              {/* 
               <Comments />
 
-              <Comments />
-
-              <Comments />
+              <Comments /> */}
             </div>
 
+            {Object.keys(house).length > 0 && <Rate id={house._id} />}
             <div className="mt-9">
               <Line />
             </div>

@@ -3,13 +3,13 @@ const { AppError } = require("../utils/appError");
 
 exports.getAllRivews = async (req, res, next) => {
   try {
-    const rivews = await Rivew.find();
+    const reviews = await Rivew.find();
 
     res.status(200).json({
       status: "success",
-      rivewCount: rivews.length,
+      rivewCount: reviews.length,
       data: {
-        rivews,
+        reviews,
       },
     });
   } catch (error) {
@@ -146,12 +146,12 @@ exports.deleteRivew = async (req, res, next) => {
 
 exports.getRivewsByHouseId = async (req, res, next) => {
   try {
-    const rivews = await Rivew.find({ houseId: req.params.houseId });
+    const reviews = await Rivew.find({ houseId: req.params.id });
 
     res.status(200).json({
       status: "Success",
       data: {
-        rivews,
+        reviews,
       },
     });
   } catch (error) {
