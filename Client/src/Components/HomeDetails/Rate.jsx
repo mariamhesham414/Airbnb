@@ -30,6 +30,8 @@ export default function StarsRating({
   defaultRating = 0,
   id,
   fetchReviews,
+  reviews,
+  fetchData,
 }) {
   const textStyle = {
     color,
@@ -42,12 +44,14 @@ export default function StarsRating({
 
   const handleRateChange = () => {
     if (!comment || rate < 1) return alert("Please enter a comment an rate");
+    // const exist = reviews.find(rev=>{rev.userId._id ===})
     axiosInstance
       .post("/reviews", { houseId: id, rate, review: comment })
       .then((res) => {
         setRate(0);
         setComment("");
         fetchReviews();
+        fetchData();
       });
   };
   const handleRate = (rating) => {

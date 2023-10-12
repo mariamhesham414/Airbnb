@@ -1,8 +1,10 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { GrApps } from "react-icons/gr";
 
 const Photogrid = ({ images }) => {
+  const { t, i18n } = useTranslation();
   return (
     <div className=" h-90 relative ">
       {images && images.length > 0 && (
@@ -42,7 +44,7 @@ const Photogrid = ({ images }) => {
         <span className="lg:m-1">
           <GrApps />
         </span>
-        <p>View all Pictures</p>
+        <p> {t("Pictures")}</p>
       </div>
     </div>
   );

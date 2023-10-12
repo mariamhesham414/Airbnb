@@ -4,9 +4,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import instance from "../../AxiosConfig/instance";
 import { useUser } from "../../Context/UserContext";
+import { useTranslation } from "react-i18next";
 const DateCard = ({ house }) => {
   const { user } = useUser();
-
+  const { t, i18n } = useTranslation();
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [guests, setGuests] = useState(1);
@@ -26,11 +27,11 @@ const DateCard = ({ house }) => {
 
   const goToReservation = () => {
     if (!user) {
-      alert("Please login to reserve");
+      alert(t("Please1"));
       return;
     }
     if (!startDate || !endDate) {
-      alert("Please select dates");
+      alert(t("Please2"));
       return;
     }
 
@@ -50,14 +51,14 @@ const DateCard = ({ house }) => {
     <div className=" w-full max-w-md p-4 bg-white rounded shadow-md flex  md:flex-col">
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2">
-          Price per Night
+          {t("Priceper")}
         </label>
         <span className="text-gray-700 text-xxl">{house.price}$</span>
       </div>
       <div className="mb-4 flex">
         <div className="mr-2">
           <label className="block text-gray-700 text-sm font-bold mb-2">
-            Check-in Date
+            {t("Check_in")}
           </label>
           <DatePicker
             selected={startDate}
@@ -67,13 +68,13 @@ const DateCard = ({ house }) => {
             endDate={endDate}
             minDate={new Date()}
             className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
-            placeholderText="Select check-in date"
+            placeholderText={t("Check_in")}
             excludeDates={reservedDates}
           />
         </div>
         <div className="ml-2">
           <label className="block text-gray-700 text-sm font-bold mb-2">
-            Check-out Date
+            {t("Check_out")}
           </label>
           <DatePicker
             selected={endDate}
@@ -83,14 +84,14 @@ const DateCard = ({ house }) => {
             endDate={endDate}
             minDate={startDate}
             className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
-            placeholderText="Select check-out date"
+            placeholderText={t("Check_out")}
             excludeDates={reservedDates}
           />
         </div>
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2">
-          Number of Guests
+          {t("gustNumber")}
         </label>
         <input
           type="number"
@@ -105,7 +106,7 @@ const DateCard = ({ house }) => {
       {startDate && endDate && (
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
-            Total Price
+            {t("Total")}
           </label>
           <span className="text-gray-700 text-xxl">{`$${calculateTotalPrice()}`}</span>
         </div>
@@ -114,7 +115,7 @@ const DateCard = ({ house }) => {
         className="w-1/2 mx-auto bg-pink-700 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         onClick={goToReservation}
       >
-        Reserve
+        {t("Reserve")}
       </button>
     </div>
   );

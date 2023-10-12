@@ -138,7 +138,12 @@ exports.deleteReservation = async (req, res, next) => {
       );
     }
 
-    if (req.user.role !== "admin" && req.user._id !== reservation.userId) {
+    if (
+      req.user.role !== "admin" &&
+      req.user._id != reservation.userId._id.toString()
+    ) {
+      console.log(reservation.userId);
+      console.log(req.user._id);
       return next(
         new AppError("You are not allowed to delete this reservation", 403)
       );

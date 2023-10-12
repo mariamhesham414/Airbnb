@@ -5,17 +5,26 @@ import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
+import { useTranslation } from "react-i18next";
 // import { useState } from "react";
 
 function PaymentsAndPayouts() {
+  const { t, i18n } = useTranslation();
+
+  // =================   =================
+ 
+  const lanuguage= localStorage.getItem("selectedLanguage")
+ 
   return (
     <>
-      <div className="paymentAndPayout d-flex flex-column justify-content-center container-lg p-5 ">
+      <div className="paymentAndPayout d-flex flex-column justify-content-center container-lg p-5 "
+       style={(lanuguage === "ar")?{ direction:"rtl"}:{direction:"ltr"}}
+      >
         <div className="payment text-decoration-none">
           <div className="d-flex ">
             <p className="fw-medium">
               <a href="#" className="text-black text-decoration-none">
-                Account
+                {t("Account")}
               </a>
               &nbsp;&nbsp;
             </p>
@@ -23,11 +32,11 @@ function PaymentsAndPayouts() {
             <p className="fw-medium">
               &nbsp;&nbsp;
               <a href="#" className="text-black text-decoration-none">
-                Payments & payouts
+                    {t("pp")}
               </a>
             </p>
           </div>
-          <h2 className="fw-bold">Payments & payouts</h2>
+          <h2 className="fw-bold">      {t("pp")}</h2>
         </div>
         <div className="w-100 mt-4">
           <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -39,14 +48,14 @@ function PaymentsAndPayouts() {
                   <Nav.Item>
                     <Nav.Link eventKey="first" className="me-4 border-0 payBtn">
                       <h6 className="fw-medium payTitles p-2 rounded-3">
-                        Payments
+                               {t("Paymentsr")}
                       </h6>
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link eventKey="second" className=" border-0 payBtn">
                       <h6 className="fw-medium payTitles p-2 rounded-3">
-                        Payouts
+                               {t("Payoutsx")}
                       </h6>
                     </Nav.Link>
                   </Nav.Item>
@@ -60,40 +69,40 @@ function PaymentsAndPayouts() {
                 <div className="d-flex paybox justify-content-between  ">
                   <div className="payLeft  d-flex flex-column mt-5">
                     <div className=" mt-3 pb-4 ">
-                      <h4 className="fw-bold ">Your payments</h4>
-                      <p> Keep track of all your payments and refunds.</p>
+                      <h4 className="fw-bold ">      {t("Yourh")}</h4>
+                      <p>         {t("refunds")}</p>
                       <button className="btn btn-dark text-white mt-3">
-                        <h6 className="p-1 ">Manage payments</h6>
+                        <h6 className="p-1 ">      {t("Manageg")}</h6>
                       </button>
                     </div>
                     <div className=" mt-5 pb-5 border-bottom">
-                      <h4 className="fw-bold ">Payment methods</h4>
+                      <h4 className="fw-bold ">        {t("methodsg")}</h4>
                       <p className="text-secondary">
-                        Add a payment method using our secure payment system,
-                        then start planning your next trip.
+                      {t("planningg")}
+                       
                       </p>
                       <button className="btn btn-dark text-white mt-3">
-                        <h6 className="p-1 ">Add payments method</h6>
+                        <h6 className="p-1 ">      {t("payments")}</h6>
                       </button>
                     </div>
                     <div className=" mt-5 pb-5 ">
-                      <h4 className="fw-bold ">Airbnb gift credit</h4>
+                      <h4 className="fw-bold ">   {t("gift")}</h4>
                       <button className="btn btn-dark text-white mt-2">
-                        <h6 className="p-1 ">Add gift card</h6>
+                        <h6 className="p-1 ">   {t("card")}</h6>
                       </button>
                     </div>
                     <div className=" mt-5 pb-5 ">
-                      <h4 className="fw-bold border-bottom pb-3">Coupons</h4>
+                      <h4 className="fw-bold border-bottom pb-3">   {t("Coupons")}</h4>
                       <div className="d-flex justify-content-between py-3 border-bottom mb-3">
                         <div>
-                          <p>Your coupons</p>
+                          <p>  {t("Your")}</p>
                         </div>
                         <div>
                           <p>0</p>
                         </div>
                       </div>
                       <button className="btn btn-dark text-white mt-2">
-                        <h6 className="p-1 ">Add coupon</h6>
+                        <h6 className="p-1 ">   {t("Addd")}</h6>
                       </button>
                     </div>
                   </div>
@@ -128,24 +137,24 @@ function PaymentsAndPayouts() {
                         </g>
                       </svg>
                       <h6 className="fw-semibold mt-2">
-                        Make all payments through Airbnb
+                           {t("through")}
                       </h6>
                       <p className="mt-2 ">
                         <span className="text-secondary">
-                          Always pay and communicate through Airbnb to ensure
-                          you're protected under our
+                        {t("Always")}
+                         
                         </span>
                         <span>
                           <a href="# " className="text-dark">
-                            Terms of Service, Payments Terms of Service
+                               {t("of")}
                           </a>
                         </span>
                         <span className="text-secondary">
-                          , cancellation, and other safeguards
+                             {t("safeguards")}
                         </span>
                         <span>
                           <a href="#" className=" text-black">
-                            Learn more
+                               {t("LearnMore")}
                           </a>
                         </span>
                       </p>
@@ -157,24 +166,24 @@ function PaymentsAndPayouts() {
                 <div className="d-flex paybox justify-content-between  ">
                   <div className="payLeft  d-flex flex-column mt-5">
                     <div className=" mt-5 pb-5 ">
-                      <h4 className="fw-bold ">How you’ll get paid</h4>
+                      <h4 className="fw-bold ">{t("How")}</h4>
                       <p>
-                        Add at least one payout method so we know where to send
-                        your money.
+                      {t("we")}
+                        
                       </p>
                       <button className="btn btn-dark text-white mt-2">
-                        <h6 className="p-1 ">Set up payments</h6>
+                        <h6 className="p-1 "> {t("Set")}</h6>
                       </button>
                     </div>
                   </div>
                   <div className="payRight payRightpay border rounded-4 p-4 ">
                     <div className="pb-2">
-                      <h5 className="fw-bold mt-2">Need help?</h5>
+                      <h5 className="fw-bold mt-2">  {t("Neede")}</h5>
                       <div className="d-flex justify-content-between my-3">
                         <div>
                           <span>
                             <a href="#" className="text-dark ">
-                              When you'll get your payout
+                                {t("payoute")}
                             </a>
                           </span>
                         </div>
@@ -188,7 +197,7 @@ function PaymentsAndPayouts() {
                         <div>
                           <span>
                             <a href="#" className="text-dark ">
-                              How payouts work
+                                {t("payoutsl")}
                             </a>
                           </span>
                         </div>
@@ -202,7 +211,7 @@ function PaymentsAndPayouts() {
                         <div>
                           <span>
                             <a href="#" className="text-dark ">
-                              Go to your transaction history
+                               {t("transaction")}
                             </a>
                           </span>
                         </div>

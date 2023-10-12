@@ -15,10 +15,11 @@ import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const navigator = useNavigate();
-
+  const lanuguage = localStorage.getItem("selectedLanguage");
   return (
     <>
       <Box
+        style={lanuguage === "ar" ? { direction: "rtl" } : { direction: "ltr" }}
         sx={{
           ...dFlex,
           minHeight: 70,

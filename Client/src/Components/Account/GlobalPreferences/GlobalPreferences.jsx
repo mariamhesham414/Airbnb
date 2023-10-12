@@ -1,17 +1,27 @@
 import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import "./GlobalPreferences.css";
+import { useTranslation } from "react-i18next";
 
 const GlobalPreference = () => {
+
+  // ============== Start of translation =================
+
+  const { t, i18n } = useTranslation();
+
+  // ============== End of translation =================
+  const lanuguage= localStorage.getItem("selectedLanguage")
+
   return (
     <>
-      <div className="personal d-flex flex-column justify-content-center container-lg p-5 ">
+      <div className="personal d-flex flex-column justify-content-center container-lg p-5 "  
+       style={(lanuguage === "ar")?{ direction:"rtl"}:{direction:"ltr"}}>
         <div className="info ">
           <div className="d-flex ">
             <p className="fw-medium">
               <a href="#" className="text-black text-decoration-none">
                 {" "}
-                Account
+                {t("Account")}
               </a>
               &nbsp;&nbsp;
             </p>
@@ -20,26 +30,26 @@ const GlobalPreference = () => {
               {" "}
               &nbsp;&nbsp;
               <a href="#" className="text-black text-decoration-none">
-                Global preferences
+              {t("preferences")}
               </a>
             </p>
           </div>
-          <h2 className="fw-bold">Global preferences</h2>
+          <h2 className="fw-bold">{t("preferences")}</h2>
         </div>
         <div className="d-flex  justify-content-between  ">
           <div className="personalLeft  d-flex flex-column mt-5">
             <div className=" mt-3 pb-4 border-bottom">
               <div className="d-flex justify-content-between">
                 <div className="d-flex flex-column">
-                  <span className="fw-medium">Preferred language</span>
-                  <span>English</span>
+                  <span className="fw-medium"> {t("Preferred")} </span>
+                  <span>{t("English")}</span>
                 </div>
                 <div>
                   <a
                     href="#"
                     className="globalEdit text-decoration-none fw-semibold"
                   >
-                    Edit
+                    {t("Edit")}
                   </a>
                 </div>
               </div>
@@ -47,7 +57,7 @@ const GlobalPreference = () => {
             <div className=" mt-3 pb-4 border-bottom">
               <div className="d-flex justify-content-between">
                 <div className="d-flex flex-column">
-                  <span className="fw-medium">Preferred currency</span>
+                  <span className="fw-medium"> {t("currency")} </span>
                   <span>United States dollar</span>
                 </div>
                 <div>
@@ -55,7 +65,7 @@ const GlobalPreference = () => {
                     href="#"
                     className="globalEdit text-decoration-none fw-semibold"
                   >
-                    Edit
+                    {t("Edit")}
                   </a>
                 </div>
               </div>
@@ -63,14 +73,14 @@ const GlobalPreference = () => {
             <div className=" mt-3 pb-4 border-bottom">
               <div className="d-flex justify-content-between">
                 <div className="d-flex flex-column">
-                  <span className="fw-medium">Time zone</span>
+                  <span className="fw-medium">{t("Timezone")}</span>
                 </div>
                 <div>
                   <a
                     href="#"
                     className="globalEdit text-decoration-none fw-semibold"
                   >
-                    Edit
+                    {t("Edit")}
                   </a>
                 </div>
               </div>
@@ -96,11 +106,9 @@ const GlobalPreference = () => {
                   fill="#484848"
                 ></path>
               </svg>
-              <h5 className="fw-bold mt-2">Your global preferences</h5>
+              <h5 className="fw-bold mt-2"> {t("global")} </h5>
               <p className="mt-4 ">
-                Changing your currency updates how you see prices. You can
-                change how you get payments in your payments & payouts
-                preferences.
+{t("payoutsin")}
               </p>
             </div>
           </div>

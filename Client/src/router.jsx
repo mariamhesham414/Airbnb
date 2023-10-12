@@ -36,21 +36,20 @@ const router = createBrowserRouter([
       {
         path: "/account",
         element: <Account />,
-        children: [
-          { index: true, element: <Account /> },
-          { path: "account/personalInfo", element: <PersonalInfo /> },
-          { path: "account/loginAndSecurity", element: <LoginAndSecurity /> },
-          {
-            path: "account/paymentsAndPayouts",
-            element: <PaymentsAndPayouts />,
-          },
-          { path: "account/taxes", element: <Taxes /> },
-          { path: "account/notifications", element: <Notifications /> },
-          { path: "account/privacyAndSharing", element: <PrivacyAndSharing /> },
-          { path: "account/globalPreferences", element: <GlobalPreferences /> },
-          { path: "account/travelForWork", element: <TravelForWork /> },
-        ],
       },
+
+      { path: "account/personalInfo", element: <PersonalInfo /> },
+      { path: "account/loginAndSecurity", element: <LoginAndSecurity /> },
+      {
+        path: "account/paymentsAndPayouts",
+        element: <PaymentsAndPayouts />,
+      },
+      { path: "account/taxes", element: <Taxes /> },
+      { path: "account/notifications", element: <Notifications /> },
+      { path: "account/privacyAndSharing", element: <PrivacyAndSharing /> },
+      { path: "account/globalPreferences", element: <GlobalPreferences /> },
+      { path: "account/travelForWork", element: <TravelForWork /> },
+
       // { path: "/reservation", element: <Reservation /> },
       // { path: "/account", element: <Account /> },
       // { path: "/personalInfo", element: <PersonalInfo /> },

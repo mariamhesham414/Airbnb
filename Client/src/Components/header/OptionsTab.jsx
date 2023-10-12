@@ -24,6 +24,7 @@ import Checkbox from "@mui/material/Checkbox";
 import instance from "../../AxiosConfig/instance";
 import { useDispatch } from "react-redux";
 import { fetchHouses, setCategory } from "../../Store/slices/houses";
+import { useTranslation } from "react-i18next";
 // function parseIcon(iconString) {
 //   const IconComponent = eval(iconString);
 //   return <IconComponent size={24} />;
@@ -38,6 +39,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 export default function OptionsTabs() {
+  const { t, i18n } = useTranslation();
   const [categories, setCategories] = useState([]);
   const dispatch = useDispatch();
 
@@ -554,17 +556,15 @@ export default function OptionsTabs() {
             sx={{ mx: "auto", p: 2, fontSize: 16, fontWeight: 700 }}
             id="customized-dialog-title"
           >
-            Filters
+            {t("Filters")}
           </DialogTitle>
           <DialogContent dividers>
             <div className="modal-dialog modal-lg">
               <div className="modal-content">
                 <div className="modal-body">
                   <div className=" p-2">
-                    <h4 className="m-0 py-3">Type of place</h4>
-                    <p className="text-secondary">
-                      Search rooms, entire homes, or any type of place.
-                    </p>
+                    <h4 className="m-0 py-3">{t("Type")} </h4>
+                    <p className="text-secondary">{t("Searchrooms")}</p>
                     <div className="d-flex justify-content-center">
                       <div className="btn-group  mx-auto">
                         <a
@@ -577,7 +577,7 @@ export default function OptionsTabs() {
                           } btn btn-outline-dark px-5 py-3 `}
                           aria-current="page"
                         >
-                          Any type
+                          {t("Anytype")}
                         </a>
                         <a
                           href="#"
@@ -588,7 +588,7 @@ export default function OptionsTabs() {
                             FiltersRoomBTN ? "active" : ""
                           } btn btn-outline-dark px-5 py-3 `}
                         >
-                          Room
+                          {t("Room")}
                         </a>
                         <a
                           href="#"
@@ -599,16 +599,14 @@ export default function OptionsTabs() {
                             FiltersEntireHomeBTN ? "active" : ""
                           } btn btn-outline-dark px-5 py-3 `}
                         >
-                          Entire home
+                          {t("Entire")}
                         </a>
                       </div>
                     </div>
                   </div>
                   <div className="border-top p-2">
-                    <h4 className="m-0 py-3">Price range</h4>
-                    <p className="text-secondary">
-                      The average nightly price is $244
-                    </p>
+                    <h4 className="m-0 py-3">{t("Pricerange")}</h4>
+                    <p className="text-secondary">{t("Theaverage")}</p>
                     <div className="row d-flex justify-content-center align-items-center">
                       <div className="col-5 py-3 d-flex justify-content-center align-items-center">
                         <div className="input-group">
@@ -640,7 +638,7 @@ export default function OptionsTabs() {
                     </div>
                   </div>
                   <div className="border-top p-2">
-                    <h4 className="m-0 py-3">Type of place</h4>
+                    <h4 className="m-0 py-3">{t("Type")} </h4>
                     <div className="row">
                       <div className="col-6 py-3">
                         <Checkbox
@@ -654,11 +652,11 @@ export default function OptionsTabs() {
                           className="form-check-label "
                           for="inlineCheckbox1"
                         >
-                          Entire place
+                          {t("Entireplace")}
                         </label>
                         <p className="ps-4 lh-sm">
                           <small className="text-secondary">
-                            A place all to yourself
+                            {t("yourself")}
                           </small>
                         </p>
                       </div>
@@ -675,11 +673,11 @@ export default function OptionsTabs() {
                           className="form-check-label "
                           for="flexCheckDefault"
                         >
-                          Room
+                          {t("Room")}
                         </label>
                         <p className="ps-4 lh-sm">
                           <small className="text-secondary">
-                            Your own room, plus access to shared spaces
+                            {t("access")}
                           </small>
                         </p>
                       </div>
@@ -695,20 +693,17 @@ export default function OptionsTabs() {
                           className="form-check-label "
                           for="flexCheckDefault"
                         >
-                          Shared room
+                          {t("Sharedroom")}
                         </label>
                         <p className="ps-4 lh-sm">
-                          <small className="text-secondary">
-                            A sleeping space and common areas that may be shared
-                            with others
-                          </small>
+                          <small className="text-secondary">{t("areas")}</small>
                         </p>
                       </div>
                     </div>
                   </div>
                   <div className="border-top p-2">
-                    <h4 className="m-0 py-3">Rooms and beds</h4>
-                    <p className="m-0 py-3">Bedrooms</p>
+                    <h4 className="m-0 py-3">{t("Rooms")} </h4>
+                    <p className="m-0 py-3">{t("Bedrooms")}</p>
                     <p className="d-flex flex-wrap gap-1">
                       <button
                         type="button"
@@ -720,7 +715,7 @@ export default function OptionsTabs() {
                         } btn btn-outline-dark rounded-pill ms-2 px-4`}
                         data-bs-toggle="button"
                       >
-                        Any
+                        {t("Any")}
                       </button>
                       <button
                         type="button"
@@ -832,7 +827,7 @@ export default function OptionsTabs() {
                         } btn btn-outline-dark rounded-pill ms-2 px-4`}
                         data-bs-toggle="button"
                       >
-                        Any
+                        {t("Any")}
                       </button>
                       <button
                         type="button"
@@ -932,7 +927,7 @@ export default function OptionsTabs() {
                         8+
                       </button>
                     </p>
-                    <p className="m-0 py-3">Bathrooms</p>
+                    <p className="m-0 py-3">{t("Bathrooms")}</p>
                     <p className="d-flex flex-wrap gap-1">
                       <button
                         type="button"
@@ -944,7 +939,7 @@ export default function OptionsTabs() {
                         } btn btn-outline-dark rounded-pill ms-2 px-4`}
                         data-bs-toggle="button"
                       >
-                        Any
+                        {t("Any")}
                       </button>
                       <button
                         type="button"
@@ -1046,7 +1041,7 @@ export default function OptionsTabs() {
                     </p>
                   </div>
                   <div className="border-top p-2">
-                    <h4 className="m-0 py-3">Property type</h4>
+                    <h4 className="m-0 py-3">{t("Property")}</h4>
                     <p className="d-inline-flex gap-1 w-100">
                       <div className="row flex-wrap w-100">
                         <div className="col-lg-3 col-6 ">
@@ -1071,7 +1066,7 @@ export default function OptionsTabs() {
                               >
                                 <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z" />
                               </svg>
-                              <h6>House</h6>
+                              <h6>{t("House")}</h6>
                             </div>
                           </button>
                         </div>
@@ -1098,7 +1093,7 @@ export default function OptionsTabs() {
                               >
                                 <path d="M15 .5a.5.5 0 0 0-.724-.447l-8 4A.5.5 0 0 0 6 4.5v3.14L.342 9.526A.5.5 0 0 0 0 10v5.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V14h1v1.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V.5ZM2 11h1v1H2v-1Zm2 0h1v1H4v-1Zm-1 2v1H2v-1h1Zm1 0h1v1H4v-1Zm9-10v1h-1V3h1ZM8 5h1v1H8V5Zm1 2v1H8V7h1ZM8 9h1v1H8V9Zm2 0h1v1h-1V9Zm-1 2v1H8v-1h1Zm1 0h1v1h-1v-1Zm3-2v1h-1V9h1Zm-1 2h1v1h-1v-1Zm-2-4h1v1h-1V7Zm3 0v1h-1V7h1Zm-2-2v1h-1V5h1Zm1 0h1v1h-1V5Z" />
                               </svg>
-                              <h6>Apartment</h6>
+                              <h6>{t("Apartment")}</h6>
                             </div>
                           </button>
                         </div>
@@ -1125,7 +1120,7 @@ export default function OptionsTabs() {
                                 <path d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.708L8 2.207l-5 5V13.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 2 13.5V8.207l-.646.647a.5.5 0 1 1-.708-.708L7.293 1.5Z" />
                                 <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1.5a.5.5 0 1 0 1 0V11a.5.5 0 0 0-.5-.5Zm0 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1Z" />
                               </svg>
-                              <h6>Guesthouse</h6>
+                              <h6>{t("Guesthouse")}</h6>
                             </div>
                           </button>
                         </div>
@@ -1152,7 +1147,7 @@ export default function OptionsTabs() {
                                 <path d="M4 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1ZM4 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1ZM7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1ZM4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Z" />
                                 <path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V1Zm11 0H3v14h3v-2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V15h3V1Z" />
                               </svg>
-                              <h6>Hotel</h6>
+                              <h6>{t("Hotel")}</h6>
                             </div>
                           </button>
                         </div>
@@ -1160,8 +1155,8 @@ export default function OptionsTabs() {
                     </p>
                   </div>
                   <div className="border-top p-2">
-                    <h4 className="m-0 py-3">Accessibility features</h4>
-                    <h6 className="m-0 py-3">Guest entrance and parking</h6>
+                    <h4 className="m-0 py-3">{t("Accessibility")}</h4>
+                    <h6 className="m-0 py-3"> {t("entrance")} </h6>
                     <div className="row">
                       <div className="col-6 py-3">
                         <Checkbox
@@ -1175,7 +1170,7 @@ export default function OptionsTabs() {
                           className="form-check-label "
                           for="flexCheckDefault"
                         >
-                          Step-free guest entrance
+                          {t("Step-free ")}
                         </label>
                       </div>
                       <div className="col-6 py-3">
@@ -1190,7 +1185,7 @@ export default function OptionsTabs() {
                           className="form-check-label "
                           for="flexCheckDefault"
                         >
-                          Accessible parking spot
+                          {t("Accessible")}
                         </label>
                       </div>
                       <div className="col-6 py-3">
@@ -1205,7 +1200,7 @@ export default function OptionsTabs() {
                           className="form-check-label "
                           for="flexCheckDefault"
                         >
-                          Guest entrance wider than 32 inches
+                          {t("wider")}
                         </label>
                       </div>
                       <div className="col-6 py-3">
@@ -1220,7 +1215,7 @@ export default function OptionsTabs() {
                           className="form-check-label "
                           for="flexCheckDefault"
                         >
-                          Step-free path to the guest entrance
+                          {t("pathto")}
                         </label>
                       </div>
                       <div className="col-12 py-3">
@@ -1228,26 +1223,26 @@ export default function OptionsTabs() {
                           type="button"
                           className="btn btn-link text-black"
                         >
-                          <h6 className="m-0">Show more</h6>
+                          <h6 className="m-0">{t("Showmore")}</h6>
                         </button>
                       </div>
                     </div>
                   </div>
                   <div className="border-top p-2">
-                    <h4 className="m-0 py-3">Top tier stays</h4>
+                    <h4 className="m-0 py-3"> {t("stays")}</h4>
                     <div className="row">
                       <div className="col-12 py-3">
                         <div className="row">
                           <div className="col-6 ps-3">
-                            <p className=" lh-sm  m-0">Superhost</p>
+                            <p className=" lh-sm  m-0">{t("Superhos")}</p>
                             <p className=" lh-sm m-0 text-secondary">
-                              Stay with recognized Hosts
+                              {t("recognizedHosts")}
                             </p>
                             <button
                               type="button"
                               className="btn btn-link text-black ps-0 pt-0"
                             >
-                              <p className="m-0">Learn more</p>
+                              <p className="m-0">{t("Learnmore")}</p>
                             </button>
                           </div>
                           <div className="col-6 d-flex align-items-center justify-content-end">
@@ -1264,9 +1259,9 @@ export default function OptionsTabs() {
                       <div className="col-12 py-3">
                         <div className="row">
                           <div className="col-6 ps-3">
-                            <p className=" lh-sm  m-0">Airbnb Plus</p>
+                            <p className=" lh-sm  m-0">{t("AirbnbPlus")}</p>
                             <p className=" lh-sm m-0 text-secondary">
-                              Every Plus home is reviewed for quality
+                              {t("EveryPlus")}
                             </p>
                           </div>
                           <div className="col-6 d-flex align-items-center justify-content-end">
@@ -1283,7 +1278,7 @@ export default function OptionsTabs() {
                     </div>
                   </div>
                   <div className="border-top p-2">
-                    <h4 className="m-0 py-3">Host language</h4>
+                    <h4 className="m-0 py-3">{t("Hostlanguage")}</h4>
                     <div className="row">
                       <div className="col-6 py-3">
                         <Checkbox
@@ -1297,7 +1292,7 @@ export default function OptionsTabs() {
                           className="form-check-label"
                           for="flexCheckDefault"
                         >
-                          English
+                          {t("English")}
                         </label>
                       </div>
                       <div className="col-6 py-3">
@@ -1312,7 +1307,7 @@ export default function OptionsTabs() {
                           className="form-check-label"
                           for="flexCheckDefault"
                         >
-                          French
+                          {t("French")}
                         </label>
                       </div>
                       <div className="col-6 py-3">
@@ -1327,7 +1322,7 @@ export default function OptionsTabs() {
                           className="form-check-label"
                           for="flexCheckDefault"
                         >
-                          German
+                          {t("German")}
                         </label>
                       </div>
                       <div className="col-6 py-3">
@@ -1342,7 +1337,7 @@ export default function OptionsTabs() {
                           className="form-check-label"
                           for="flexCheckDefault"
                         >
-                          Japanese
+                          {t("Japanese")}
                         </label>
                       </div>
                       <div className="col-12 py-3">
@@ -1350,7 +1345,7 @@ export default function OptionsTabs() {
                           type="button"
                           className="btn btn-link text-black"
                         >
-                          <h6 className="m-0">Show more</h6>
+                          <h6 className="m-0">{t("Showmore")}</h6>
                         </button>
                       </div>
                     </div>
@@ -1366,7 +1361,7 @@ export default function OptionsTabs() {
               autoFocus
               onClick={handleClose}
             >
-              <h6 className="m-0">Clear all</h6>
+              <h6 className="m-0">{t("Clearall")}</h6>
             </ButtonBase>
             <ButtonBase
               type="button "
@@ -1374,7 +1369,7 @@ export default function OptionsTabs() {
               data-bs-dismiss="modal"
               onClick={handleClose}
             >
-              <h6 className="m-0">Show</h6>
+              <h6 className="m-0">{t("Show")}</h6>
             </ButtonBase>
           </DialogActions>
         </BootstrapDialog>

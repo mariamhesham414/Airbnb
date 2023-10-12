@@ -25,7 +25,9 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import "./LocationSearch.css";
-
+import { useTranslation } from "react-i18next";
+// // ====================== translate site functionality==================
+// const { t, i18n } = useTranslation();
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -73,7 +75,7 @@ export default function LocationSearch() {
   const handleClose = () => setOpen(false);
 
   const [value2, setValue2] = React.useState([0]);
-
+  const { t, i18n } = useTranslation();
   const handleChange2 = (event, newValue) => {
     value2.push(newValue);
     setValue2(value2);
@@ -100,19 +102,17 @@ export default function LocationSearch() {
     },
   });
   const choices = [
-    { id: 1, text: "Anywhere" },
-    { id: 2, text: "Any week" },
-    { id: 3, text: "Add guest", withIcon: true },
+    { id: 1, text: t("Anywhere") },
+    { id: 2, text: t("Anyweek") },
+    { id: 3, text: t("Addguest"), withIcon: true },
   ];
   const [isHiden, setIsHiden] = useState(false);
   const [isFlexible, setIsFlexible] = useState(false);
   const toggleSearchBar = () => {
     setIsHiden(!isHiden);
-    console.log(isHiden);
   };
   const toggleDate = () => {
     setIsFlexible(!isFlexible);
-    console.log(isFlexible);
   };
   const [value, setValue] = React.useState(0);
 
@@ -412,6 +412,7 @@ export default function LocationSearch() {
       }
     }
   };
+
   return (
     <>
       <Container
@@ -495,9 +496,9 @@ export default function LocationSearch() {
               aria-label="basic tabs example"
               style={{ justifyContent: "center" }}
             >
-              <Tab label="Stays" {...a11yProps(0)} />
-              <Tab label="Experiences" {...a11yProps(1)} />
-              <Tab label="Online Experiences" />
+              <Tab label={t("Stays")} {...a11yProps(0)} />
+              <Tab label={t("Experiences")} {...a11yProps(1)} />
+              <Tab label={t("Online")} />
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0}>
@@ -511,7 +512,7 @@ export default function LocationSearch() {
                     moveInOptionsSearchLocation ? "actv" : ""
                   } rounded-pill border-0 `}
                 >
-                  <p className="ps-3 BarTitle text-start">Location</p>
+                  <p className="ps-3 BarTitle text-start">{t("Location")}</p>
                   <input type="text" placeholder="Where are you going?" />
                 </TriggerButton>
                 <Menu
@@ -520,7 +521,7 @@ export default function LocationSearch() {
                 >
                   <div className="p-4">
                     <div>
-                      <p style={{ fontWeight: "bold" }}>Search by region</p>
+                      <p style={{ fontWeight: "bold" }}>{t("region")}</p>
                     </div>
                     <div className="d-flex">
                       <div>
@@ -536,7 +537,7 @@ export default function LocationSearch() {
                           }  map rounded`}
                           src="https://a0.muscache.com/pictures/f9ec8a23-ed44-420b-83e5-10ff1f071a13.jpg"
                         />
-                        <p className="ps-2">I’m flexible</p>
+                        <p className="ps-2"> {t("flexible")}</p>
                       </div>
                       <div>
                         <img
@@ -549,7 +550,7 @@ export default function LocationSearch() {
                           }  map rounded`}
                           src="https://a0.muscache.com/im/pictures/7b5cf816-6c16-49f8-99e5-cbc4adfd97e2.jpg?im_w=320"
                         />
-                        <p className="ps-2">Europe</p>
+                        <p className="ps-2">{t("Europe")}</p>
                       </div>
                       <div>
                         <img
@@ -562,7 +563,7 @@ export default function LocationSearch() {
                           }  map rounded`}
                           src="https://a0.muscache.com/im/pictures/ea5598d7-2b07-4ed7-84da-d1eabd9f2714.jpg?im_w=320"
                         />
-                        <p className="ps-2">Italy</p>
+                        <p className="ps-2">{t("Italy")}</p>
                       </div>
                     </div>
                     <div className="d-flex">
@@ -579,7 +580,7 @@ export default function LocationSearch() {
                           }  map rounded`}
                           src="https://a0.muscache.com/im/pictures/4e762891-75a3-4fe1-b73a-cd7e673ba915.jpg?im_w=320"
                         />
-                        <p className="ps-2">United States</p>
+                        <p className="ps-2">{t("UnitedStates")}</p>
                       </div>
                       <div>
                         <img
@@ -592,7 +593,7 @@ export default function LocationSearch() {
                           }  map rounded`}
                           src="https://a0.muscache.com/im/pictures/97d76097-22b3-4d87-9459-ad1b90b18d2f.jpg?im_w=320"
                         />
-                        <p className="ps-2">Turkey</p>
+                        <p className="ps-2">{t("Turkey")}</p>
                       </div>
                       <div>
                         <img
@@ -605,7 +606,7 @@ export default function LocationSearch() {
                           }  map rounded`}
                           src="https://a0.muscache.com/im/pictures/7e9673a5-4164-4708-a047-8d281b5980e7.jpg?im_w=320"
                         />
-                        <p className="ps-2">Africa</p>
+                        <p className="ps-2">{t("Africa")}</p>
                       </div>
                     </div>
                   </div>
@@ -621,9 +622,7 @@ export default function LocationSearch() {
                     moveInOptionsSearchCheckInAndCheckOut ? "actv" : ""
                   }  rounded-pill  border-0 `}
                 >
-                  <p className="px-3 BarTitle text-start">
-                    Check in & Check out
-                  </p>
+                  <p className="px-3 BarTitle text-start">{t("Check")}</p>
                   <input
                     className="px-3"
                     disabled
@@ -648,14 +647,14 @@ export default function LocationSearch() {
                           toggleDate();
                         }}
                       >
-                        Dates
+                        {t("Dates")}
                       </button>
                       <button
                         style={{ backgroundColor: "#ebebeb " }}
                         type="button"
                         className="btn btn-light rounded-pill px-4 border-0 DateType"
                       >
-                        Months
+                        {t("Months")}
                       </button>
                       <button
                         style={{ backgroundColor: "#ebebeb " }}
@@ -665,7 +664,7 @@ export default function LocationSearch() {
                           toggleDate();
                         }}
                       >
-                        Flexible
+                        {t("Flexible")}
                       </button>
                     </div>
                     <div
@@ -694,7 +693,7 @@ export default function LocationSearch() {
                         }}
                         className="mt-5"
                       >
-                        How long would you like to stay?
+                        {t("staydata")}
                       </h6>
                       <div
                         style={{
@@ -710,7 +709,7 @@ export default function LocationSearch() {
                             FlexibleWeekendOption ? "active" : ""
                           } btn btn-outline-dark rounded-pill mx-1 my-2`}
                         >
-                          Weekend
+                          {t("Weekend")}
                         </button>
                         <button
                           onClick={() => {
@@ -721,7 +720,7 @@ export default function LocationSearch() {
                             FlexibleWeekOption ? "active" : ""
                           } btn btn-outline-dark rounded-pill mx-1 my-2`}
                         >
-                          Week
+                          {t("Week")}
                         </button>
                         <button
                           onClick={() => {
@@ -732,7 +731,7 @@ export default function LocationSearch() {
                             FlexibleMonthOption ? "active" : ""
                           } btn btn-outline-dark rounded-pill mx-1 my-2`}
                         >
-                          Month
+                          {t("Month")}
                         </button>
                       </div>
                       <h6
@@ -741,7 +740,7 @@ export default function LocationSearch() {
                         }}
                         className="mt-4"
                       >
-                        When do you want to go?
+                        {t("When")}
                       </h6>
                       <Box
                         style={{
@@ -880,7 +879,7 @@ export default function LocationSearch() {
                     moveInOptionsSearchGuests ? "actv" : ""
                   } rounded-pill border-0 `}
                 >
-                  <p className="px-3 BarTitle text-start">Guests</p>
+                  <p className="px-3 BarTitle text-start">{t("Guests")}</p>
                   <input
                     className="px-3"
                     disabled
@@ -899,8 +898,8 @@ export default function LocationSearch() {
                       style={{ width: "350px" }}
                     >
                       <div className="ms-2 me-auto">
-                        <div className="fw-bold">Adults</div>
-                        <span className="text-secondary">Ages 13 or above</span>
+                        <div className="fw-bold">{t("Adults")}</div>
+                        <span className="text-secondary">{t("reserDate")}</span>
                       </div>
                       <span className="rounded-pill d-flex">
                         <button
@@ -930,8 +929,8 @@ export default function LocationSearch() {
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-start py-3">
                       <div className="ms-2 me-auto">
-                        <div className="fw-bold">Children</div>
-                        <span className="text-secondary">Ages 2–12</span>
+                        <div className="fw-bold">{t("Children")}</div>
+                        <span className="text-secondary">{t("Ages")}</span>
                       </div>
                       <span className="rounded-pill d-flex">
                         <button
@@ -961,8 +960,8 @@ export default function LocationSearch() {
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-start py-3">
                       <div className="ms-2 me-auto">
-                        <div className="fw-bold">Infants</div>
-                        <span className="text-secondary">Under 2</span>
+                        <div className="fw-bold">{t("Infants")}</div>
+                        <span className="text-secondary">{t("Under")}</span>
                       </div>
                       <span className="rounded-pill d-flex">
                         <button
@@ -992,10 +991,8 @@ export default function LocationSearch() {
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-start py-3">
                       <div className="ms-2 me-auto">
-                        <div className="fw-bold ">Pets</div>
-                        <a className="link-secondary">
-                          Bringing a service animal?
-                        </a>
+                        <div className="fw-bold ">{t("Pets")}</div>
+                        <a className="link-secondary">{t("BringAnimal")}</a>
                       </div>
                       <span className="rounded-pill d-flex">
                         <button
@@ -1053,7 +1050,7 @@ export default function LocationSearch() {
                     moveInOptionsSearchLocation ? "actv" : ""
                   } rounded-pill border-0 `}
                 >
-                  <p className="px-3 BarTitle text-start">Location</p>
+                  <p className="px-3 BarTitle text-start">{t("Location")}</p>
                   <input
                     className="px-3"
                     type="text"
@@ -1066,7 +1063,7 @@ export default function LocationSearch() {
                 >
                   <div className="p-4">
                     <div>
-                      <p style={{ fontWeight: "bold" }}>Search by region</p>
+                      <p style={{ fontWeight: "bold" }}>{t("region")}</p>
                     </div>
                     <div className="d-flex">
                       <div>
@@ -1082,7 +1079,7 @@ export default function LocationSearch() {
                           }  map rounded`}
                           src="https://a0.muscache.com/pictures/f9ec8a23-ed44-420b-83e5-10ff1f071a13.jpg"
                         />
-                        <p className="ps-2">I’m flexible</p>
+                        <p className="ps-2">{t("flexible")}</p>
                       </div>
                       <div>
                         <img
@@ -1095,7 +1092,7 @@ export default function LocationSearch() {
                           }  map rounded`}
                           src="https://a0.muscache.com/im/pictures/7b5cf816-6c16-49f8-99e5-cbc4adfd97e2.jpg?im_w=320"
                         />
-                        <p className="ps-2">Europe</p>
+                        <p className="ps-2">{t("Europe")}</p>
                       </div>
                       <div>
                         <img
@@ -1108,7 +1105,7 @@ export default function LocationSearch() {
                           }  map rounded`}
                           src="https://a0.muscache.com/im/pictures/ea5598d7-2b07-4ed7-84da-d1eabd9f2714.jpg?im_w=320"
                         />
-                        <p className="ps-2">Italy</p>
+                        <p className="ps-2">{t("Italy")}</p>
                       </div>
                     </div>
                     <div className="d-flex">
@@ -1125,7 +1122,7 @@ export default function LocationSearch() {
                           }  map rounded`}
                           src="https://a0.muscache.com/im/pictures/4e762891-75a3-4fe1-b73a-cd7e673ba915.jpg?im_w=320"
                         />
-                        <p className="ps-2">United States</p>
+                        <p className="ps-2">{t("United States")}</p>
                       </div>
                       <div>
                         <img
@@ -1138,7 +1135,7 @@ export default function LocationSearch() {
                           }  map rounded`}
                           src="https://a0.muscache.com/im/pictures/97d76097-22b3-4d87-9459-ad1b90b18d2f.jpg?im_w=320"
                         />
-                        <p className="ps-2">Turkey</p>
+                        <p className="ps-2">{t("Turkey")}</p>
                       </div>
                       <div>
                         <img
@@ -1151,7 +1148,7 @@ export default function LocationSearch() {
                           }  map rounded`}
                           src="https://a0.muscache.com/im/pictures/7e9673a5-4164-4708-a047-8d281b5980e7.jpg?im_w=320"
                         />
-                        <p className="ps-2">Africa</p>
+                        <p className="ps-2">{t("Africa")}</p>
                       </div>
                     </div>
                   </div>
@@ -1166,7 +1163,7 @@ export default function LocationSearch() {
                     moveInOptionsSearchCheckInAndCheckOut ? "actv" : ""
                   }  rounded-pill  border-0 `}
                 >
-                  <p className="px-3 BarTitle text-start">Date</p>
+                  <p className="px-3 BarTitle text-start">{t("Date")}</p>
                   <input
                     className="px-3"
                     disabled
@@ -1198,7 +1195,7 @@ export default function LocationSearch() {
                     moveInOptionsSearchGuests ? "actv" : ""
                   } rounded-pill border-0 `}
                 >
-                  <p className="px-2 BarTitle text-start">Guests</p>
+                  <p className="px-2 BarTitle text-start">{t("Guests")}</p>
                   <input
                     className="px-2"
                     disabled
@@ -1217,8 +1214,8 @@ export default function LocationSearch() {
                       style={{ width: "350px" }}
                     >
                       <div className="ms-2 me-auto">
-                        <div className="fw-bold">Adults</div>
-                        <span className="text-secondary">Ages 13 or above</span>
+                        <div className="fw-bold">{t("Adults")}</div>
+                        <span className="text-secondary">{t("reserDate")}</span>
                       </div>
                       <span className="rounded-pill d-flex">
                         <button
@@ -1248,8 +1245,8 @@ export default function LocationSearch() {
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-start py-3">
                       <div className="ms-2 me-auto">
-                        <div className="fw-bold">Children</div>
-                        <span className="text-secondary">Ages 2–12</span>
+                        <div className="fw-bold">{t("Children")}</div>
+                        <span className="text-secondary">{t("Ages")}</span>
                       </div>
                       <span className="rounded-pill d-flex">
                         <button
@@ -1263,7 +1260,7 @@ export default function LocationSearch() {
                         >
                           <i className="fa-solid fa-minus"></i>
                         </button>
-                        <p className="p-2 m-0">{ChildrenGuest}</p>
+                        <p className="p-2 m-0">{t("Children")}</p>
                         <button
                           onClick={() => {
                             GuestsNumberPlus("Children");
@@ -1279,8 +1276,8 @@ export default function LocationSearch() {
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-start py-3">
                       <div className="ms-2 me-auto">
-                        <div className="fw-bold">Infants</div>
-                        <span className="text-secondary">Under 2</span>
+                        <div className="fw-bold">{t("Infants")}</div>
+                        <span className="text-secondary">{t("Under")}</span>
                       </div>
                       <span className="rounded-pill d-flex">
                         <button
@@ -1310,10 +1307,8 @@ export default function LocationSearch() {
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-start py-3">
                       <div className="ms-2 me-auto">
-                        <div className="fw-bold ">Pets</div>
-                        <a className="link-secondary">
-                          Bringing a service animal?
-                        </a>
+                        <div className="fw-bold ">{t("Pets")}</div>
+                        <a className="link-secondary">{t("BringAnimal")}</a>
                       </div>
                       <span className="rounded-pill d-flex">
                         <button

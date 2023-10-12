@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   AiOutlineIdcard,
   AiOutlineSetting,
@@ -19,169 +19,189 @@ import { BiShieldPlus, BiDollar } from "react-icons/bi";
 import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { FaAirbnb } from "react-icons/fa6";
 import "./Account.css";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import instance from "../../AxiosConfig/instance";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { useTranslation } from "react-i18next";
 
 const Account = () => {
+  // ============== Start of translation =================
+
+  const { t, i18n } = useTranslation();
+
+  // ============== End of translation =================
+
+  // ============== Start get all user  informations ================
+
+  const [UserDta, setUserData] = useState({});
+  const authToken = Cookies.get("token");
+  useEffect(() => {
+    async function getUserData() {
+      if (authToken) {
+        try {
+          const response = await instance.get("/users/getMe", {
+            headers: {
+              Authorization: `token=${authToken}`,
+              "Content-Type": "application/json",
+            },
+          });
+          console.log(response.data.data);
+          setUserData(response.data.data.user);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        console.log(console.error());
+      }
+    }
+
+    getUserData();
+  }, []);
+  console.log(UserDta.name);
+  // ============== End get all user  informations ================
+  const lanuguage = localStorage.getItem("selectedLanguage");
+
   return (
     <>
-      <div className="account  mt-5">
+      <div
+        className="account  mt-5"
+        style={lanuguage === "ar" ? { direction: "rtl" } : { direction: "ltr" }}
+      >
         <div className="px-4">
-          <h1 className="display-5 fs-2 fw-medium">Account</h1>
+          <h1 className="display-5 fs-2 fw-medium">{t("Account")}</h1>
           <h5 className="fw-normal">
-            <span className="fw-medium">Mariam Hehsam,</span>
-            &nbsp;mariam@gmail.com. &nbsp;
+            <span className="fw-medium">{UserDta.name}</span>
+            &nbsp;{UserDta.email}. &nbsp;
             <span>
               <a href="#" className="text-black fw-medium">
-                Go to profile
+                {t("goprofile")}
               </a>
             </span>
           </h5>
         </div>
-        <div className="d-flex justify-content-center">
+        <div
+          className="d-flex justify-content-center"
+          style={{ height: "300px" }}
+        >
           <div className="boxes mt-5 d-flex flex-wrap justify-content-start">
             <div className="box mx-2 rounded-4 shadow p-3 mb-4">
               <NavLink
-                to="account/personalInfo"
+                to={"/account/personalInfo"}
                 className="text-black text-decoration-none"
               >
                 <AiOutlineIdcard size={"35px"} />
                 <div className="mt-3">
-                  <h6 className="fw-semibold">Personal info</h6>
-                  <h6 className="fw-normal text-secondary">
-                    Provide personal details and how we can reach you
-                  </h6>
+                  <h6 className="fw-semibold"></h6>
+                  <h6 className="fw-normal text-secondary">{t("Provide")}</h6>
                 </div>
               </NavLink>
             </div>
 
             <div className="box mx-2 rounded-4 shadow p-3 mb-4">
               <NavLink
-                to="account/loginAndSecurity"
+                to={"/account/loginAndSecurity"}
                 className="text-black text-decoration-none"
               >
                 <RiSecurePaymentLine size={"35px"} />
                 <div className="mt-3">
-                  <h6 className="fw-semibold">Login & security</h6>
-                  <h6 className="fw-normal text-secondary">
-                    Update your password and secure your account
-                  </h6>
+                  <h6 className="fw-semibold">{t("security")}</h6>
+                  <h6 className="fw-normal text-secondary">{t("Update")}</h6>
                 </div>
               </NavLink>
             </div>
 
             <div className="box mx-2 rounded-4 shadow p-3 mb-4">
-              <NavLink
-                to="account/paymentsAndPayouts"
-                className="text-black text-decoration-none"
-              >
+              <Link to={"/trips"} className="text-black text-decoration-none">
                 <MdOutlinePayments size={"35px"} />
                 <div className="mt-3">
-                  <h6 className="fw-semibold">Payments & payouts</h6>
-                  <h6 className="fw-normal text-secondary">
-                    Review payments, payouts, coupons, and gift cards
-                  </h6>
+                  <h6 className="fw-semibold">{t("payouts")}</h6>
+                  <h6 className="fw-normal text-secondary">{t("Review")}</h6>
                 </div>
-              </NavLink>
+              </Link>
             </div>
             <div className="box mx-2 rounded-4 shadow p-3 mb-4">
               <NavLink
-                to="account/taxes"
+                to="/account/taxes"
                 className="text-black text-decoration-none"
               >
                 <IoDocumentOutline size={"35px"} />
                 <div className="mt-3">
-                  <h6 className="fw-semibold">Taxes</h6>
-                  <h6 className="fw-normal text-secondary">
-                    Manage taxpayer information and tax documents
-                  </h6>
+                  <h6 className="fw-semibold">{t("Taxes")}</h6>
+                  <h6 className="fw-normal text-secondary">{t("Manage")}</h6>
                 </div>
               </NavLink>
             </div>
             <div className="box mx-2 rounded-4 shadow p-3 mb-4">
               <NavLink
-                to="account/notifications"
+                to="/account/notifications"
                 className="text-black text-decoration-none"
               >
                 <HiOutlineSpeakerphone size={"35px"} />
                 <div className="mt-3">
                   <h6 className="fw-semibold">Notifications</h6>
-                  <h6 className="fw-normal text-secondary">
-                    Choose notification preferences and how you want to be
-                    contacted
-                  </h6>
+                  <h6 className="fw-normal text-secondary">{t("contacted")}</h6>
                 </div>
               </NavLink>
             </div>
             <div className="box mx-2 rounded-4 shadow p-3 mb-4">
               <NavLink
-                to="account/privacyAndSharing"
+                to="/account/privacyAndSharing"
                 className="text-black text-decoration-none"
               >
                 <AiOutlineEye size={"35px"} />
                 <div className="mt-3">
-                  <h6 className="fw-semibold">Privacy & sharing</h6>
-                  <h6 className="fw-normal text-secondary">
-                    Manage your personal data, connected services, and data
-                    sharing settings
-                  </h6>
+                  <h6 className="fw-semibold">{t("sharing")}</h6>
+                  <h6 className="fw-normal text-secondary">{t("settings")}</h6>
                 </div>
               </NavLink>
             </div>
             <div className="box mx-2 rounded-4 shadow p-3 mb-4">
               <NavLink
-                to="account/globalPreferences"
+                to="/account/globalPreferences"
                 className="text-black text-decoration-none"
               >
                 <BsToggles size={"35px"} />
 
                 <div className="mt-3">
-                  <h6 className="fw-semibold">Global preferences</h6>
-                  <h6 className="fw-normal text-secondary">
-                    Set your default language, currency, and timezone
-                  </h6>
+                  <h6 className="fw-semibold"> {t("Global")} </h6>
+                  <h6 className="fw-normal text-secondary">{t("timezone")}</h6>
                 </div>
               </NavLink>
             </div>
             <div className="box mx-2 rounded-4 shadow p-3 mb-4">
               <NavLink
-                to="account/travelForWork"
+                to="/account/travelForWork"
                 className="text-black text-decoration-none"
               >
                 <GiDesk size={"35px"} />
                 <div className="mt-3">
-                  <h6 className="fw-semibold">Travel for work</h6>
-                  <h6 className="fw-normal text-secondary">
-                    Add a work email for business trip benefits
-                  </h6>
+                  <h6 className="fw-semibold">{t("Travel")} </h6>
+                  <h6 className="fw-normal text-secondary">{t("benefits")}</h6>
                 </div>
               </NavLink>
             </div>
             <div className="box mx-2 rounded-4 shadow p-3 mb-4">
               <NavLink
-                to="account/professionalHostingTools"
+                to="/account/professionalHostingTools"
                 className="text-black text-decoration-none"
               >
                 <LiaChartBarSolid size={"35px"} />
                 <div className="mt-3">
-                  <h6 className="fw-semibold">Professional hosting tools</h6>
-                  <h6 className="fw-normal text-secondary">
-                    Get professional tools if you manage several properties on
-                    Airbnb
-                  </h6>
+                  <h6 className="fw-semibold"> {t("Professional")} </h6>
+                  <h6 className="fw-normal text-secondary">{t("several")}</h6>
                 </div>
               </NavLink>
             </div>
             <div className="box mx-2 rounded-4 shadow p-3 mb-4">
               <NavLink
-                to="account/referralCreditAndCoupon"
+                to="/account/referralCreditAndCoupon"
                 className="text-black text-decoration-none"
               >
                 <HiOutlineGiftTop size={"35px"} />
                 <div className="mt-3">
-                  <h6 className="fw-semibold">Referral credit & coupon</h6>
-                  <h6 className="fw-normal text-secondary">
-                    You have $0 referral credits and coupon. Learn more.
-                  </h6>
+                  <h6 className="fw-semibold"> {t("Referral")} </h6>
+                  <h6 className="fw-normal text-secondary">{t("referral")}</h6>
                 </div>
               </NavLink>
             </div>
@@ -189,10 +209,10 @@ const Account = () => {
           </div>
         </div>
         <div className="continer text-center mt-3">
-          <p>Need to deactive your account?</p>
+          <p> {t("Need")} </p>
           <h6>
             <a href="#" className="text-black ">
-              Take care of that now
+              {t("care")}
             </a>
           </h6>
         </div>
@@ -200,7 +220,7 @@ const Account = () => {
       {/* responsive small */}
       <div className="accountSmall container-fluid px-4 mt-5">
         <div>
-          <h2 className="display-5 fs-1 fw-medium">Profile</h2>
+          <h2 className="display-5 fs-1 fw-medium">{t("Profile")}</h2>
         </div>
         <div className="showProfile d-flex justify-content-between mt-4 pb-3 border-bottom">
           <div className="d-flex ">
@@ -226,8 +246,8 @@ const Account = () => {
         </div>
         <div className="place d-flex justify-content-between mt-4 p-4 border border-2 border-light-subtle rounded-4 shadow">
           <div>
-            <h5 className="mt-2">Airbnb your place</h5>
-            <span>It’s simple to get set up and start earning.</span>
+            <h5 className="mt-2"> {t("yourplace")} </h5>
+            <span> {t("simple")} </span>
           </div>
           <div>
             <img
@@ -239,7 +259,7 @@ const Account = () => {
         <div className="showProfile d-flex justify-content-between mt-5 pb-3 ">
           <div className="d-flex ">
             <PiUserCircle size={"25px"} />
-            <span className=" ms-3">Personal info</span>
+            <span className=" ms-3">{t("Personalinfo")}</span>
           </div>
           <div>
             <IoIosArrowForward size={"25px"} />
@@ -248,7 +268,7 @@ const Account = () => {
         <div className="showProfile d-flex justify-content-between mt-4 pb-4 border-bottom">
           <div className="d-flex ">
             <AiOutlineSetting size={"25px"} />
-            <span className=" ms-3">Account</span>
+            <span className=" ms-3">{t("Account")}</span>
           </div>
           <div>
             <IoIosArrowForward size={"25px"} />
@@ -259,7 +279,7 @@ const Account = () => {
           <div className="showProfile d-flex justify-content-between mt-5 pb-5 border-bottom">
             <div className="d-flex ">
               <BsToggles size={"25px"} />
-              <span className=" ms-3">Host a home</span>
+              <span className=" ms-3">{t("Hosthome")}</span>
             </div>
             <div>
               <IoIosArrowForward size={"25px"} />
@@ -267,11 +287,11 @@ const Account = () => {
           </div>
         </div>
         <div className="pt-5">
-          <span className="display-5 fs-3 fw-medium">Support</span>
+          <span className="display-5 fs-3 fw-medium">{t("Support")}</span>
           <div className="showProfile d-flex justify-content-between mt-5  ">
             <div className="d-flex ">
               <AiOutlineQuestionCircle size={"25px"} />
-              <span className=" ms-3">Visit the Help Center</span>
+              <span className=" ms-3"> {t("Visitthe")} </span>
             </div>
             <div>
               <IoIosArrowForward size={"25px"} />
@@ -280,7 +300,7 @@ const Account = () => {
           <div className="showProfile d-flex justify-content-between mt-5  ">
             <div className="d-flex ">
               <BiShieldPlus size={"25px"} />
-              <span className=" ms-3">Get help with a safety issue</span>
+              <span className=" ms-3"> {t("safety")} </span>
             </div>
             <div>
               <IoIosArrowForward size={"25px"} />
@@ -289,7 +309,7 @@ const Account = () => {
           <div className="showProfile d-flex justify-content-between mt-5  ">
             <div className="d-flex ">
               <TfiHeadphoneAlt size={"25px"} />
-              <span className=" ms-3">Report a neihborhood concern</span>
+              <span className=" ms-3"> {t("neihborhood")} </span>
             </div>
             <div>
               <IoIosArrowForward size={"25px"} />
@@ -298,7 +318,7 @@ const Account = () => {
           <div className="showProfile d-flex justify-content-between mt-5 mb-4 pb-4 border-bottom ">
             <div className="d-flex ">
               <FaAirbnb size={"25px"} />
-              <span className=" ms-3">How Airbnb works</span>
+              <span className=" ms-3"> {t("works")} </span>
             </div>
             <div>
               <IoIosArrowForward size={"25px"} />
@@ -307,32 +327,32 @@ const Account = () => {
         </div>
         <div className="setting d-flex mb-3">
           <span className="d-flex mx-1 language">
-            <RiGlobalLine size={"25px"} /> English(US)
+            <RiGlobalLine size={"25px"} /> {t("English")}(US)
           </span>
           <span className="d-flex payment">
             <BiDollar size={"25px"} className="pe-2" />
-            USD
+            {t(" USD")}
           </span>
         </div>
         <button className="btn logoutbtn border-black text-black rounded-3 mb-4 text-center">
-          <h5>Log out</h5>
+          <h5>{t("Oute")}</h5>
         </button>
         <div className="help text-center mb-4">
           <h6>
             <a href="#" className="text-black">
-              Help & support
+              {t("help")}
             </a>
             &nbsp;&nbsp;
             <a href="#" className="text-black">
-              Terms of Service
+              {t("Terms")}
             </a>
             &nbsp;&nbsp;
             <a href="#" className="text-black">
-              Privacy Poilcy
+              {t("Poilcy")}
             </a>
             &nbsp;&nbsp;
             <a href="#" className="text-black">
-              Your Privacy Choices
+              {t("Choices")}
             </a>
             &nbsp;&nbsp;
             <svg
@@ -370,9 +390,7 @@ const Account = () => {
               ></rect>
             </svg>
           </h6>
-          <h6 className="text-secondary">
-            © 2023 Airbnb, Inc. All rights reserved.
-          </h6>
+          <h6 className="text-secondary">{t("reserved")}</h6>
         </div>
       </div>
     </>

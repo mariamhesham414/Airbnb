@@ -1,7 +1,9 @@
 import React from "react";
 import { IoFileTrayFullOutline, IoLocationOutline } from "react-icons/io5";
 import { IoIosBusiness } from "react-icons/io";
+import { useTranslation } from "react-i18next";
 const Workspace = () => {
+  const { t, i18n } = useTranslation();
   return (
     <div className="w-full flex flex-col gap-4">
       <div className="flex items-center gap-3">
@@ -9,10 +11,8 @@ const Workspace = () => {
           <IoFileTrayFullOutline />
         </span>
         <div className="text-left">
-          <p className=" mt-1 text-[17px] font-semibold">Dedicated workspace</p>
-          <p className="text-[15px] text-gray-500">
-            A common area with wifi that’s well suited for working.
-          </p>
+          <p className=" mt-1 text-[17px] font-semibold"> {t("Dedicated")} </p>
+          <p className="text-[15px] text-gray-500">{t("common")}</p>
         </div>
       </div>
 
@@ -21,10 +21,8 @@ const Workspace = () => {
           <IoIosBusiness />
         </span>
         <div className="text-left">
-          <p className=" mt-1 text-[17px] font-semibold">Self check-in</p>
-          <p className="text-[15px] text-gray-500">
-            You can check in with the doorperson.
-          </p>
+          <p className=" mt-1 text-[17px] font-semibold"> {t("Selfcheck")} </p>
+          <p className="text-[15px] text-gray-500">{t("doorperson")}</p>
         </div>
       </div>
 
@@ -33,10 +31,8 @@ const Workspace = () => {
           <IoLocationOutline />
         </span>
         <div className="text-left">
-          <p className=" mt-1 text-[17px] font-semibold">Great location</p>
-          <p className="text-[15px] text-gray-500">
-            100% of recent guests gave the location a 5-star rating.
-          </p>
+          <p className=" mt-1 text-[17px] font-semibold"> {t("Great")} </p>
+          <p className="text-[15px] text-gray-500">{t("recentguests")}</p>
         </div>
       </div>
     </div>

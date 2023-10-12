@@ -10,7 +10,8 @@ import Rate from "../Components/HomeDetails/Rate";
 import { FaStar, FaMapMarkerAlt, FaShareAlt, FaHeart } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import axiosInstance from "../AxiosConfig/instance";
-
+import { useUser } from "../Context/UserContext";
+import { useTranslation } from "react-i18next";
 const UpperPart = ({ house, reviews }) => {
   return (
     <>
@@ -62,11 +63,15 @@ const UpperPart = ({ house, reviews }) => {
 };
 
 const HomeDetails = () => {
+  const { t, i18n } = useTranslation();
+  const { user } = useUser();
+  const lanuguage = localStorage.getItem("selectedLanguage");
+
   const [house, setHouse] = useState({});
   const [reviews, setReviews] = useState([]);
   const { id } = useParams();
 
-  useEffect(() => {
+  const fetchdata = () => {
     axiosInstance
       .get(`/houses/${id}`)
       .then((res) => {
@@ -75,6 +80,9 @@ const HomeDetails = () => {
         fetchReviews();
       })
       .catch(() => navigate(-1));
+  };
+  useEffect(() => {
+    fetchdata();
   }, [id]);
 
   const fetchReviews = () => {
@@ -89,7 +97,10 @@ const HomeDetails = () => {
 
   return (
     house && (
-      <div className="p-2">
+      <div
+        className="p-2"
+        style={lanuguage === "ar" ? { direction: "rtl" } : { direction: "ltr" }}
+      >
         <div className="md:px-20 mt-9">
           <UpperPart house={house} reviews={reviews} />
 
@@ -137,7 +148,12 @@ const HomeDetails = () => {
             </div>
 
             {Object.keys(house).length > 0 && (
-              <Rate id={house._id} fetchReviews={fetchReviews} />
+              <Rate
+                id={house._id}
+                fetchReviews={fetchReviews}
+                reviews={reviews}
+                fetchdata={fetchdata}
+              />
             )}
             <div className="mt-9">
               <Line />
@@ -153,13 +169,8 @@ const HomeDetails = () => {
             </div>
 
             <div className="text-left mt-3 flex flex-col gap-3">
-              <p className="font-bold">Gyza</p>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas
-                porro ullam a quisquam vero rem aliquid ea. Ipsam facere iste
-                unde error quam est, exercitationem, iusto architecto excepturi
-                soluta eius.
-              </p>
+              <p className="font-bold">{house.address}</p>
+              <p>{house.description}</p>
               <p>
                 The HATCH is directly on HIN KONG BEACH FRONT! Ocean views, on
                 the beach - sandy feet very welcome!!

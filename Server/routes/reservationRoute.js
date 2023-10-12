@@ -7,7 +7,7 @@ router.get("/success", reservationController.createReservation);
 
 router.use(authController.protect);
 
-router.route("/:id").delete(reservationController.deleteReservation);
+router.delete("/:id", reservationController.deleteReservation);
 router.get("/me", reservationController.getMyReservations);
 router.post("/", reservationController.payment);
 

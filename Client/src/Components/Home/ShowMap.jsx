@@ -2,10 +2,12 @@ import React from "react";
 import { ButtonBase } from "@mui/material";
 import { FaMap } from "react-icons/fa";
 import Box from "@mui/material/Box";
+import { useTranslation } from "react-i18next";
 // import { ThemeProvider, createTheme } from '@mui/material/styles';
 // import { Button } from '@mui/material';
 
 export default function ShowMap() {
+  const { t, i18n } = useTranslation();
   // const theme = createTheme({
   //     components: {
   //       MuiButton: {
@@ -67,7 +69,7 @@ export default function ShowMap() {
             variant: "black",
           }}
         >
-          Show map <FaMap style={{ marginLeft: "3px" }} />
+          {t(" Showmap")} <FaMap style={{ marginLeft: "3px" }} />
         </ButtonBase>
       </Box>
     </>

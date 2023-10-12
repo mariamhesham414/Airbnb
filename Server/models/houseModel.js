@@ -82,7 +82,13 @@ const houseSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
-
+houseSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "category",
+    select: "name",
+  });
+  next();
+});
 houseSchema.virtual("reviews", {
   ref: "rivew",
   foreignField: "houseId",

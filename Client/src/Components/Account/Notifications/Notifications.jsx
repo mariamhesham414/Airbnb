@@ -7,16 +7,26 @@ import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 // import { useState } from "react";
 import Form from "react-bootstrap/Form";
+import { useTranslation } from "react-i18next";
 
 function Notifications() {
+
+  const { t, i18n } = useTranslation();
+
+  // =================   =================
+
+  const lanuguage= localStorage.getItem("selectedLanguage")
+
   return (
     <>
-      <div className="texes d-flex flex-column justify-content-center container-lg p-5 ">
+      <div className="texes d-flex flex-column justify-content-center container-lg p-5 " 
+        style={(lanuguage === "ar")?{ direction:"rtl"}:{direction:"ltr"}}
+      >
         <div className="taxe text-decoration-none">
           <div className="d-flex ">
             <p className="fw-medium">
               <a href="#" className="text-black text-decoration-none">
-                Account
+                {t("Account")}
               </a>
               &nbsp;&nbsp;
             </p>
@@ -24,11 +34,11 @@ function Notifications() {
             <p className="fw-medium">
               &nbsp;&nbsp;
               <a href="#" className="text-black text-decoration-none">
-                Notifications
+                {t("Notifications")}
               </a>
             </p>
           </div>
-          <h2 className="fw-bold">Notifications</h2>
+          <h2 className="fw-bold">{t("Notifications")}</h2>
         </div>
         <div className="w-100 mt-4">
           <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -40,14 +50,14 @@ function Notifications() {
                   <Nav.Item>
                     <Nav.Link eventKey="first" className="me-4 border-0 payBtn">
                       <h6 className="fw-medium payTitles p-2 rounded-3">
-                        Offers and updates
+                  {t("Offe")}
                       </h6>
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link eventKey="second" className=" border-0 payBtn">
                       <h6 className="fw-medium payTitles p-2 rounded-3">
-                        Account
+                         {t("Account")}
                       </h6>
                     </Nav.Link>
                   </Nav.Item>
@@ -61,51 +71,51 @@ function Notifications() {
                 <div className="d-flex paybox justify-content-between  ">
                   <div className="payLeft  d-flex flex-column mt-4">
                     <div className=" pb-4 ">
-                      <h4 className="fw-semibold ">Travel tips and offers</h4>
+                      <h4 className="fw-semibold "> {t("offerss")}</h4>
                       <p className=" text-secondary">
-                        Inspire your next trip with personalized recommendations
-                        and special offers.
+                      {t("personalized")}
+                        
                       </p>
-                      <p className="mb-1">Inspiration and offers</p>
-                      <p className="text-secondary mb-2">On: Email</p>
+                      <p className="mb-1">    {t("Inspiration")}</p>
+                      <p className="text-secondary mb-2">    {t("OnEmail")}</p>
                       <p>
                         <a href="#" className="text-dark fw-semibold mb-4">
-                          Edit
+                          {t("Edit")}
                         </a>
                       </p>
-                      <p className="mb-1">Trip planning</p>
-                      <p className="text-secondary mb-2">On: Email</p>
+                      <p className="mb-1">    {t("planning")}</p>
+                      <p className="text-secondary mb-2">   {t("OnEmail")}</p>
                       <p className="border-bottom pb-4">
                         <a href="#" className="text-dark fw-semibold mb-4">
-                          Edit
+                        {t("Edit")}
                         </a>
                       </p>
                     </div>
                     <div className=" pb-4 border-bottom">
-                      <h4 className="fw-semibold ">Airbnb updates</h4>
+                      <h4 className="fw-semibold ">{t("Accupdates")}</h4>
                       <p className=" text-secondary">
-                        Stay up to date on the latest news from Airbnb, and let
-                        us know how we can improve.
+                      {t("latestnews")}
+                      
                       </p>
-                      <p className="mb-1">News and programs</p>
-                      <p className="text-secondary mb-2">On: Email</p>
+                      <p className="mb-1">    {t("programs")}</p>
+                      <p className="text-secondary mb-2">     {t("OnEmail ")}</p>
                       <p>
                         <a href="#" className="text-dark fw-semibold mb-4">
-                          Edit
+                              {t("Edit")}
                         </a>
                       </p>
-                      <p className="mb-1">Feedback</p>
-                      <p className="text-secondary mb-2">On: Email</p>
+                      <p className="mb-1">  {t("Feedback")}</p>
+                      <p className="text-secondary mb-2">{t("OnEmail")}</p>
                       <p>
                         <a href="#" className="text-dark fw-semibold mb-4">
-                          Edit
+                        {t("Edit")}
                         </a>
                       </p>
-                      <p className="mb-1">Travel regulations</p>
-                      <p className="text-secondary mb-2">On: Email</p>
+                      <p className="mb-1">{t("regulations")}</p>
+                      <p className="text-secondary mb-2"> {t("OnEmail")}</p>
                       <p>
                         <a href="#" className="text-dark fw-semibold mb-4">
-                          Edit
+                        {t("Edit")}
                         </a>
                       </p>
                     </div>
@@ -131,54 +141,55 @@ function Notifications() {
                   <div className="payLeft  d-flex flex-column mt-4">
                     <div className=" pb-4 ">
                       <h4 className="fw-semibold ">
-                        Account activity and policies
+                      {t("policies")}
+                
                       </h4>
                       <p className=" text-secondary">
-                        Confirm your booking and account activity, and learn
-                        about important Airbnb policies.
+                      {t("bookings")}
+                        
                       </p>
-                      <p className="mb-1">Account activity</p>
-                      <p className="text-secondary mb-2">On: Email and SMS</p>
+                      <p className="mb-1">{t("activitys")}</p>
+                      <p className="text-secondary mb-2">{t("SMS")}</p>
                       <p>
                         <a href="#" className="text-dark fw-semibold mb-4">
-                          Edit
+                          {t("Edit")}
                         </a>
                       </p>
-                      <p className="mb-1">Guest policies</p>
-                      <p className="text-secondary mb-2">On: Email and SMS</p>
+                      <p className="mb-1">  {t("Guestsl")}</p>
+                      <p className="text-secondary mb-2">{t("SMS")}</p>
                       <p className="border-bottom pb-4">
                         <a href="#" className="text-dark fw-semibold ">
-                          Edit
+                        {t("Edit")}
                         </a>
                       </p>
                     </div>
                     <div className=" pb-4 border-bottom ">
-                      <h4 className="fw-semibold">Reminders</h4>
+                      <h4 className="fw-semibold"> {t("Reminders")}</h4>
                       <p className=" text-secondary">
-                        Get important reminders about your reservations,
-                        listings, and account activity.
+                      {t("reminder")}
+                        
                       </p>
-                      <p className="mb-1">Reminders</p>
-                      <p className="text-secondary mb-2">On: Email and SMS</p>
+                      <p className="mb-1">{t("Reminders")}</p>
+                      <p className="text-secondary mb-2">{t("SMS")}</p>
                       <p>
                         <a href="#" className="text-dark fw-semibold mb-4">
-                          Edit
+                          {t("Edit")}
                         </a>
                       </p>
                     </div>
                     <div className=" mt-3 pb-4 ">
                       <h4 className="fw-semibold mt-2">
-                        Guest and Host messages
+                          {t("Guestl")}
                       </h4>
                       <p className=" text-secondary">
-                        Keep in touch with your Host or guests before and during
-                        your trip.
+                      {t("befores")}
+                       
                       </p>
-                      <p className="mb-1">Messages</p>
-                      <p className="text-secondary mb-2">On: Email and SMS</p>
+                      <p className="mb-1"> {t("Messages")}</p>
+                      <p className="text-secondary mb-2"> {t("SMS")}</p>
                       <p>
                         <a href="#" className="text-dark fw-semibold mb-4">
-                          Edit
+                        {t("Edit")}
                         </a>
                       </p>
                     </div>

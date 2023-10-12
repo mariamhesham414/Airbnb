@@ -1,23 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import "./PrivacyAndSharing.css";
-import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
-import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 // import { useState } from "react";
-import Form from "react-bootstrap/Form";
 import { AiOutlineCheck } from "react-icons/ai";
+import { useTranslation } from "react-i18next";
+import Cookies from "js-cookie";
+import instance from "../../../AxiosConfig/instance";
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 function PrivacyAndSharing() {
+  const { t, i18n } = useTranslation();
+  // =================   =================
+ 
+  const lanuguage= localStorage.getItem("selectedLanguage")
+  const authToken = Cookies.get('token');
+ async  function DeletMe(){
+  try {
+    if(authToken) {
+      await axios.delete('/users/deleteMe')
+      window.alert("delted success")
+    }else{
+      window.alert("You are Not Login")
+      const navigate = useNavigate();
+      navigate("/")
+    } 
+  } catch (error) {
+    console.log(error);
+    
+  }
+
+  }
   return (
     <>
-      <div className="Privacy and sharing d-flex flex-column justify-content-center container-lg p-5 ">
+      <div className="Privacy and sharing d-flex flex-column justify-content-center container-lg p-5 "
+       style={(lanuguage === "ar")?{ direction:"rtl"}:{direction:"ltr"}}
+      >
         <div className="sharing text-decoration-none">
           <div className="d-flex ">
             <p className="fw-medium">
               <a href="#" className="text-black text-decoration-none">
-                Account
+                {t("Account")}
               </a>
               &nbsp;&nbsp;
             </p>
@@ -25,11 +50,11 @@ function PrivacyAndSharing() {
             <p className="fw-medium">
               &nbsp;&nbsp;
               <a href="#" className="text-black text-decoration-none">
-                Privacy and sharing
+                {t("sharing")}
               </a>
             </p>
           </div>
-          <h2 className="fw-bold">Privacy and sharing</h2>
+          <h2 className="fw-bold"> {t("sharing")}</h2>
         </div>
         <div className="w-100 mt-4">
           <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -41,7 +66,7 @@ function PrivacyAndSharing() {
                   <Nav.Item>
                     <Nav.Link eventKey="first" className=" border-0 payBtn">
                       <h6 className="fw-medium payTitles p-2 rounded-3">
-                        Data
+                        {t("Data")}
                       </h6>
                     </Nav.Link>
                   </Nav.Item>
@@ -51,14 +76,14 @@ function PrivacyAndSharing() {
                       className="mx-2 border-0 payBtn"
                     >
                       <h6 className="fw-medium payTitles p-2 rounded-3">
-                        Sharing
+                        {t("Sharingg")}
                       </h6>
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link eventKey="third" className=" border-0 payBtn">
                       <h6 className="fw-medium payTitles p-2 rounded-3">
-                        Services
+                        {t("Services")}
                       </h6>
                     </Nav.Link>
                   </Nav.Item>
@@ -72,41 +97,40 @@ function PrivacyAndSharing() {
                 <div className="d-flex paybox justify-content-between  ">
                   <div className="payLeft  d-flex flex-column mt-4">
                     <div className=" pb-4 ">
-                      <h4 className="fw-semibold ">Manage your account data</h4>
+                      <h4 className="fw-semibold ">   {t("Manageng")}</h4>
                       <p className=" text-secondary">
-                        You can make a request to download or delete your
-                        personal data from Airbnb.
+                      {t("download")}
+                     
                       </p>
                       <div className="d-flex mt-5">
-                        <span>Request your personal data&nbsp;</span>
+                        <span> {t("yourf")}</span>
                         <div>
                           <IoIosArrowForward size={"20px"} className="mt-1" />
                         </div>
                       </div>
                       <p className="text-secondary mb-2">
-                        We’ll create a file for you to download your personal
-                        data.
+                      {t("filex")}
+                      
                       </p>
                       <div className="d-flex mt-5">
-                        <span>Delete your account&nbsp;</span>
+                        <span onClick={DeletMe}> {t("Delete")}</span>
                         <div>
                           <IoIosArrowForward size={"20px"} className="mt-1" />
                         </div>
                       </div>
                       <p className="text-secondary mb-2">
-                        This will permanently delete your account and your data,
-                        in accordance with applicable law.
+                      {t("applicable")}
+                        
                       </p>
                     </div>
                   </div>
                   <div className="payRight payRightpay border rounded-4 p-4 ">
                     <div className="pb-2">
-                      <h5 className="fw-semibold mt-2">Committed to privacy</h5>
+                      <h5 className="fw-semibold mt-2"> {t("Committed")} </h5>
                       <p>
-                        Airbnb is committed to keeping your data protected. See
-                        details in our{" "}
+                      {t("keeping")} {" "}
                         <a href="#" className="text-dark fw-semibold">
-                          Privacy Policy.
+                           {t("xll")}
                         </a>
                       </p>
                     </div>
@@ -117,20 +141,20 @@ function PrivacyAndSharing() {
                 <div className="d-flex paybox justify-content-between  ">
                   <div className="payLeft  d-flex flex-column mt-4">
                     <div className=" pb-4 ">
-                      <h4 className="fw-semibold ">Activity sharing</h4>
+                      <h4 className="fw-semibold ">  {t("Activitys")}</h4>
                       <p className=" text-secondary">
-                        Decide how your profile and activity are shown to
-                        others.
+                      {t("Decide")}
+                        
                       </p>
                       <div className=" mt-5">
                         <span>
-                          Include my profile and listing in search engines
+                        {t("enginesx")}
+                          
                         </span>
                       </div>
                       <p className="text-secondary mb-2">
-                        Turning this on means search engines, like Google, will
-                        display your profile and listing pages in search
-                        results.
+                      {t("like")}
+                       
                       </p>
                       <input type="checkbox" id="switch1" />
                       <label id="labelPrivacy" htmlFor="switch1">
@@ -141,13 +165,12 @@ function PrivacyAndSharing() {
                         </div>
                       </label>
                       <div className=" mt-5">
-                        <span>Read Receipts</span>
+                        <span>  {t("youReceiptsrf")}</span>
                       </div>
                       <p className="text-secondary mb-2">
-                        When this is on, we’ll show people that you’ve read
-                        their messages.{" "}
+                         {t("on")}{" "}
                         <a href="#" className="text-dark fw-semibold">
-                          Learn more
+                          {t("LearnMore")}
                         </a>
                       </p>
                       <input type="checkbox" id="switch2" />
@@ -156,18 +179,19 @@ function PrivacyAndSharing() {
                           <AiOutlineCheck
                             style={{ fill: "black !important" }}
                           />
+
+
                         </div>
                       </label>
                     </div>
                   </div>
                   <div className="payRight payRightpay border rounded-4 p-4 ">
                     <div className="pb-2">
-                      <h5 className="fw-semibold mt-2">Committed to privacy</h5>
+                      <h5 className="fw-semibold mt-2"> {t("Committed")}</h5>
                       <p>
-                        Airbnb is committed to keeping your data protected. See
-                        details in our{" "}
+                        {t("keeping")}{" "}
                         <a href="#" className="text-dark fw-semibold">
-                          Privacy Policy.
+                           {t("xxl")}
                         </a>
                       </p>
                     </div>
@@ -177,20 +201,19 @@ function PrivacyAndSharing() {
               <Tab.Pane eventKey="third">
                 <div className="d-flex paybox justify-content-between  ">
                   <div className="payLeft  d-flex flex-column mt-4">
-                    <h4 className="fw-semibold ">Connected services</h4>
-                    <p className=" text-secondary">
-                      View services that you’ve connected to your Airbnb account
+                    <h4 className="fw-semibold "> {t("sss")}</h4>
+                    <p className=" text-secondary"> 
+                       {t("zzz")}
                     </p>
-                    <p className="mt-2">No services connected at the moment</p>
+                    <p className="mt-2">  {t("non")}</p>
                   </div>
                   <div className="payRight payRightpay border rounded-4 p-4 ">
                     <div className="pb-2">
-                      <h5 className="fw-semibold mt-2">Committed to privacy</h5>
+                      <h5 className="fw-semibold mt-2"> {t("Committed")}</h5>
                       <p>
-                        Airbnb is committed to keeping your data protected. See
-                        details in our{" "}
+                         {t("keeping")}{" "}
                         <a href="#" className="text-dark fw-semibold">
-                          Privacy Policy.
+                    {t("xxl")}
                         </a>
                       </p>
                     </div>

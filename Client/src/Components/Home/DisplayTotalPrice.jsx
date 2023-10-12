@@ -1,12 +1,16 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
-import FormGroup from "@mui/material/FormGroup";
+// import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+// import Stack from "@mui/material/Stack";
+// import Typography from "@mui/material/Typography";
 import "./DisplayTotalPrice.css";
+import { useTranslation } from "react-i18next";
 export default function DisplayTotalPrice() {
+  const { t, i18n } = useTranslation();
+
+  //======================= style function =======================
   const IOSSwitch = styled((props) => (
     <Switch
       focusVisibleClassName=".Mui-focusVisible"
@@ -71,12 +75,12 @@ export default function DisplayTotalPrice() {
         >
           <div className="d-flex justify-content-between">
             <div id="subheader2" className="d-flex">
-              <p className="h6 m-0 my-auto pe-2">Display total price</p>
+              <p className="h6 m-0 my-auto pe-2"> {t(" totalprice")} </p>
               <p
                 id="subheader3"
                 className="m-0 my-auto border-start ps-2 text-body-secondary"
               >
-                Includes all fees, before taxes
+                {t("include")}
               </p>
             </div>
             <FormControlLabel
