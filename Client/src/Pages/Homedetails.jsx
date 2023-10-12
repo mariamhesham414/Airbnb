@@ -11,7 +11,7 @@ import { FaStar, FaMapMarkerAlt, FaShareAlt, FaHeart } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import axiosInstance from "../AxiosConfig/instance";
 
-const UpperPart = ({ house }) => {
+const UpperPart = ({ house, reviews }) => {
   return (
     <>
       <div className="text-left font-semibold text-xl lg:text-3xl">
@@ -30,7 +30,7 @@ const UpperPart = ({ house }) => {
           ) : (
             <span>New</span>
           )}
-          {house.reviews && <p className="underline">{house.reviews.length}</p>}
+          {reviews && <p className="underline">{reviews.length} review</p>}
 
           <span className="mb-3">
             {" "}
@@ -89,7 +89,7 @@ const HomeDetails = () => {
     house && (
       <div className="p-2">
         <div className="md:px-20 mt-9">
-          <UpperPart house={house} />
+          <UpperPart house={house} reviews={reviews} />
 
           <div className="mt-5 ">
             <Photogrid images={house.images} />
@@ -107,12 +107,12 @@ const HomeDetails = () => {
                 <span className="">
                   <FaStar size={20} />
                 </span>
-                4.7
+                {house.rate}
               </h1>
-              <p> 3 reviews</p>
+              <p> {reviews.length} reviews</p>
             </div>
             <div className="mt-5">
-              <Review />
+              <Review rate={house.rate} />
             </div>
             <div className="w-full h-[1px] bg-gray-500 mt-24"></div>
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2  md:gap-x-10">
