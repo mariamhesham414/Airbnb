@@ -30,7 +30,9 @@ const UpperPart = ({ house, reviews }) => {
           ) : (
             <span>New</span>
           )}
-          {reviews && <p className="underline">{reviews.length} review</p>}
+          {reviews.lenght > 0 && (
+            <p className="underline">{reviews.length} review</p>
+          )}
 
           <span className="mb-3">
             {" "}
@@ -102,18 +104,24 @@ const HomeDetails = () => {
           <div className="w-full h-[1px] bg-gray-500 mt-24"></div>
 
           <div className="mt-10 p-2 ">
-            <div className="flex items-center gap-2 text-xl font-semibold">
-              <h1>
-                <span className="">
-                  <FaStar size={20} />
-                </span>
-                {house.rate}
-              </h1>
-              <p> {reviews.length} reviews</p>
-            </div>
-            <div className="mt-5">
-              <Review rate={house.rate} />
-            </div>
+            {reviews.length > 0 && (
+              <div className="flex items-center gap-2 text-xl font-semibold">
+                <h1>
+                  <span className="">
+                    <FaStar size={20} />
+                  </span>
+                  {house.rate}
+                </h1>
+                <p> {reviews.length} reviews</p>
+              </div>
+            )}
+
+            {house.rate && (
+              <div className="mt-5">
+                <Review rate={house.rate} />
+              </div>
+            )}
+
             <div className="w-full h-[1px] bg-gray-500 mt-24"></div>
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2  md:gap-x-10">
               {reviews &&
