@@ -120,7 +120,7 @@ exports.deleteRivew = async (req, res, next) => {
     }
 
     if (
-      rivew.userId.toString() !== req.user._id.toString() &&
+      rivew.userId._id.toString() !== req.user._id.toString() &&
       req.user.role !== "admin"
     ) {
       return next(

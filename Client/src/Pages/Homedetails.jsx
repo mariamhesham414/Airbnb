@@ -95,6 +95,19 @@ const HomeDetails = () => {
       .catch(() => navigate(-1));
   };
 
+  const deleteReview = (id) => {
+    console.log(id);
+    axiosInstance
+      .delete(`/reviews/${id}`)
+      .then((res) => {
+        console.log(res);
+        fetchReviews();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     house && (
       <div
@@ -139,7 +152,13 @@ const HomeDetails = () => {
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2  md:gap-x-10">
               {reviews &&
                 reviews.map((rev) => {
-                  return <Comments review={rev} />;
+                  return (
+                    <Comments
+                      review={rev}
+                      user={user}
+                      deleteReview={deleteReview}
+                    />
+                  );
                 })}
               {/* 
               <Comments />
@@ -147,7 +166,7 @@ const HomeDetails = () => {
               <Comments /> */}
             </div>
 
-            {Object.keys(house).length > 0 && (
+            {Object.keys(house).length > 0 && user && (
               <Rate
                 id={house._id}
                 fetchReviews={fetchReviews}
