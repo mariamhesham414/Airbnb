@@ -32,8 +32,9 @@ import {
   addWishlist,
   deleteWishlist,
 } from "../../Store/slices/wishlist";
-
+import { useUser } from "../../Context/UserContext";
 export default function CarouselCard({ location, wishlist }) {
+  const { user } = useUser();
   const dispatch = useDispatch();
 
   const isInWishlist = wishlist.some((item) =>
@@ -41,24 +42,12 @@ export default function CarouselCard({ location, wishlist }) {
   );
 
   const toggleItem = (id) => {
+    if (!user) {
+      alert("you neet to logIn first");
+      return;
+    }
     isInWishlist ? dispatch(deleteWishlist(id)) : dispatch(addWishlist(id));
   };
-
-  // const deleteFromWishlist = (id) => {
-  //   dispatch(deleteWishlist(id));
-  //   setIsInWishlist(!isInWishlist);
-  // };
-
-  // useEffect(() => {
-  //   dispatch(fetchWishlist());
-  //   setIsInWishlist(wishlist.some((item) => item._id === location._id));
-  //   console.log("wishlist", wishlist);
-  // }, [isInWishlist]);
-
-  // useEffect(() => {}, []);
-
-  // console.log("isInWishlist", isInWishlist, Date.now() / 1000 / 60 / 60 / 24);
-  // console.log(wishlist);
 
   const [activeStep, setActiveStep] = useState(0);
   const navigate = useNavigate();
