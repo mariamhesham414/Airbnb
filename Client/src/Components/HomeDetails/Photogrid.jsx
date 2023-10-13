@@ -20,22 +20,22 @@ const Photogrid = ({ images }) => {
             <img
               src={`http://localhost:3000/img/houses/${images[1]}`}
               alt=""
-              className="h-48 w-96  hover:brightness-75 cursor-pointer "
+              className="h-100 w-96  hover:brightness-75 cursor-pointer "
             />
             <img
               src={`http://localhost:3000/img/houses/${images[2]}`}
               alt=""
-              className="h-48 w-96  hover:brightness-75 cursor-pointer"
+              className="h-100 w-96  hover:brightness-75 cursor-pointer"
             />
             <img
               src={`http://localhost:3000/img/houses/${images[3]}`}
               alt=""
-              className="h-48 w-96  hover:brightness-75 cursor-pointer "
+              className="h-100 w-96  hover:brightness-75 cursor-pointer "
             />
             <img
               src={`http://localhost:3000/img/houses/${images[0]}`}
               alt=""
-              className="h-48 w-96  hover:brightness-75 cursor-pointer"
+              className="h-100 w-96  hover:brightness-75 cursor-pointer"
             />
           </div>
         </div>

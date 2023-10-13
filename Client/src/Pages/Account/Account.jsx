@@ -80,19 +80,17 @@ const Account = () => {
             </span>
           </h5>
         </div>
-        <div
-          className="d-flex justify-content-center"
-          style={{ height: "300px" }}
-        >
-          <div className="boxes mt-5 d-flex flex-wrap justify-content-start">
-            <div className="box mx-2 rounded-4 shadow p-3 mb-4">
+        <div className="d-flex justify-content-center ">
+          <div className="boxes mt-5 d-flex flex-wrap boxheight justify-content-start">
+            <div className="box mx-2 rounded-4  shadow p-3 mb-4">
               <NavLink
                 to={"/account/personalInfo"}
                 className="text-black text-decoration-none"
               >
                 <AiOutlineIdcard size={"35px"} />
                 <div className="mt-3">
-                  <h6 className="fw-semibold"></h6>
+                  {/* <h6 className="fw-semibold">Personal info</h6> */}
+                  <h6 className="fw-semibold">{t("Personal")}</h6>
                   <h6 className="fw-normal text-secondary">{t("Provide")}</h6>
                 </div>
               </NavLink>
