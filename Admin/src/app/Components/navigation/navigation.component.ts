@@ -1,20 +1,19 @@
-import { AuthService } from 'src/app/Services/auth.service';
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthService } from "src/app/Services/auth.service";
+import { Component, OnChanges, OnInit, SimpleChanges } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-navigation',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css'],
+  selector: "app-navigation",
+  templateUrl: "./navigation.component.html",
+  styleUrls: ["./navigation.component.css"],
 })
 export class NavigationComponent implements OnInit, OnChanges {
   isloggedIn: boolean = false;
   constructor(private router: Router, private authService: AuthService) {}
-  ngOnChanges(changes: SimpleChanges): void {
-    this.isloggedIn = this.authService.isLoggedIn();
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
   ngOnInit(): void {
-    this.activateLink('/houses');
+    this.activateLink("/houses");
+    this.isloggedIn = this.authService.isAdmin();
   }
 
   activateLink(link: string) {
@@ -23,6 +22,6 @@ export class NavigationComponent implements OnInit, OnChanges {
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/signin']);
+    this.router.navigate(["/signin"]);
   }
 }

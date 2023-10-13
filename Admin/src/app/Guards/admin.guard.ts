@@ -1,6 +1,7 @@
 import { inject } from "@angular/core";
 import { CanActivateFn, Router } from "@angular/router";
 import { AuthService } from "../Services/auth.service";
+import { map } from "rxjs";
 
 export const AdminGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
@@ -9,13 +10,20 @@ export const AdminGuard: CanActivateFn = (route, state) => {
   console.log("guard is working ");
 
   if (token) {
-    if (authService.fetchUserData() && authService.isAdmin()) {
-      console.log("guard is working in admin");
-      return true;
-    } else {
-      router.navigate(["/signin"]);
-      return false;
-    }
+    return authService.fetchUserData().pipe(
+      map((data) => {
+        console.log(data);
+
+        if (data) {
+          console.log("User is admin");
+          return true;
+        } else {
+          console.log("User is not admin");
+          router.navigate(["/signin"]);
+          return false;
+        }
+      })
+    );
   } else {
     console.log("token is not working");
     router.navigate(["/signin"]);

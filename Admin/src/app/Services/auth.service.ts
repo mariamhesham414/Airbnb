@@ -50,8 +50,7 @@ export class AuthService {
   fetchUserData(): Observable<any> {
     return this.httpClient.get(`${environment.BaseApiURL}/users/getme`).pipe(
       map((response: any) => {
-        console.log(response.data.user.role === "admin");
-        this.userRole = response.data.user.role === "admin" ? "admin" : "";
+        return response.data.user.role === "admin";
       })
     );
   }
