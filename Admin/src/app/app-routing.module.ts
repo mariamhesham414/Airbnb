@@ -20,8 +20,13 @@ const routes: Routes = [
     children: [
       {
         path: "home",
-        component: HousesComponent,
+        component: ReportsComponent,
         data: { title: "Home Page" },
+      },
+      {
+        path: "reports",
+        component: ReportsComponent,
+        data: { title: "Reports Page" },
       },
       {
         path: "houses",
@@ -57,11 +62,6 @@ const routes: Routes = [
         path: "team",
         component: TeamComponent,
         data: { title: "Team Page" },
-      },
-      {
-        path: "reports",
-        component: ReportsComponent,
-        data: { title: "Reports Page" },
       },
 
       { path: "house-details/:id", component: HouseDetailsComponent },

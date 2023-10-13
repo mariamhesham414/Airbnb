@@ -23,10 +23,17 @@
         <div class="hidden md:block">
           <div class="ml-10 flex items-baseline space-x-4">
             <a
+              (click)="activateLink('/reports')"
+              routerLinkActive="active"
+              routerLink="/reports"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+              >Reports</a
+            >
+            <a
               (click)="activateLink('/houses')"
               routerLink="/houses"
               routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
               class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
               aria-current="page"
               >Houses</a
@@ -46,13 +53,6 @@
               >Reservations</a
             >
 
-            <a
-              (click)="activateLink('/reports')"
-              routerLinkActive="active"
-              routerLink="/reports"
-              class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-              >Reports</a
-            >
             <a
               (click)="activateLink('/team')"
               routerLinkActive="active"

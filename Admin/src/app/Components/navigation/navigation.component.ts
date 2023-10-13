@@ -14,7 +14,7 @@ export class NavigationComponent implements OnInit, OnChanges {
     this.isloggedIn = this.authService.isLoggedIn();
   }
   ngOnInit(): void {
-    this.activateLink("/houses");
+    this.activateLink("/reports");
     this.isloggedIn = this.authService.isLoggedIn();
   }
 
