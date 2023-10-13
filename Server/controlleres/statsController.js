@@ -10,6 +10,7 @@ exports.getAllStats = async (req, res) => {
     const totalUsers = await User.countDocuments();
     const totalHouses = await House.countDocuments();
     const categories = await Category.find();
+
     const categoriesWithCounts = await Promise.all(
       categories.map(async (category) => {
         const count = await House.countDocuments({ category: category._id });
@@ -66,7 +67,7 @@ exports.getAllStats = async (req, res) => {
         },
       },
       {
-        $limit: 3,
+        $limit: 5,
       },
     ]);
 

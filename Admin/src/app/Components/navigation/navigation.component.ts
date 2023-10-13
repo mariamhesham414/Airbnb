@@ -9,10 +9,13 @@ import { Router } from "@angular/router";
 })
 export class NavigationComponent implements OnInit, OnChanges {
   isloggedIn: boolean = true;
+
   constructor(private router: Router, private authService: AuthService) {}
+
   ngOnChanges(changes: SimpleChanges): void {
     this.isloggedIn = this.authService.isLoggedIn();
   }
+
   ngOnInit(): void {
     this.activateLink("/reports");
     this.isloggedIn = this.authService.isLoggedIn();
