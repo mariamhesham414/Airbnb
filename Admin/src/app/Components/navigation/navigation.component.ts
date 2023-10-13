@@ -8,12 +8,14 @@ import { Router } from "@angular/router";
   styleUrls: ["./navigation.component.css"],
 })
 export class NavigationComponent implements OnInit, OnChanges {
-  isloggedIn: boolean = false;
+  isloggedIn: boolean = true;
   constructor(private router: Router, private authService: AuthService) {}
-  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnChanges(changes: SimpleChanges): void {
+    this.isloggedIn = this.authService.isLoggedIn();
+  }
   ngOnInit(): void {
     this.activateLink("/houses");
-    this.isloggedIn = this.authService.isAdmin();
+    this.isloggedIn = this.authService.isLoggedIn();
   }
 
   activateLink(link: string) {
@@ -23,5 +25,6 @@ export class NavigationComponent implements OnInit, OnChanges {
   logout() {
     this.authService.logout();
     this.router.navigate(["/signin"]);
+    this.isloggedIn = true;
   }
 }
