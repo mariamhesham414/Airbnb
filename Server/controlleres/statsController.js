@@ -19,8 +19,7 @@ exports.getAllStats = async (req, res) => {
         };
       })
     );
-
-    const mostReviewedHouse = await Review.aggregate([
+    const mostReviewedHouses = await Review.aggregate([
       {
         $group: {
           _id: "$houseId",
@@ -33,7 +32,7 @@ exports.getAllStats = async (req, res) => {
         },
       },
       {
-        $limit: 1,
+        $limit: 3,
       },
       {
         $lookup: {
@@ -100,7 +99,7 @@ exports.getAllStats = async (req, res) => {
       totalUsers: totalUsers,
       totalHouses: totalHouses,
       categories: categoriesWithCounts,
-      mostReviewedHouse: mostReviewedHouse[0],
+      mostReviewedHouses: mostReviewedHouses[0],
       topRatedHouses: topRatedHouses,
       totalReservationPrice: totalReservationPrice[0].totalPrice,
       housesByRegion: housesByRegion,
