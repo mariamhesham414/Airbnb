@@ -15,8 +15,8 @@ exports.payment = async (req, res, next) => {
       (1000 * 60 * 60 * 24)
   );
   const isValideDate =
-    new Date(checkIn) < new Date(checkOut) && new Date(checkIn) >= new Date();
-
+    new Date(checkIn) < new Date(checkOut) &&
+    new Date(checkIn).getDate() + 1 >= new Date().getDate();
   if (!isValideDate) {
     return next(
       new AppError(
