@@ -17,6 +17,12 @@ import { SignInComponent } from "./Components/sign-in/sign-in.component";
 import { AuthInterceptor } from "./Interceptors/auth.interceptor";
 import { HouseDetailsComponent } from "./Components/house-details/house-details.component";
 import { ReportsComponent } from "./Components/reports/reports.component";
+import { FusionChartsModule } from "angular-fusioncharts";
+import * as FusionCharts from "fusioncharts";
+import * as Charts from "fusioncharts/fusioncharts.charts";
+import * as FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+
+FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
 
 @NgModule({
   declarations: [
@@ -39,6 +45,7 @@ import { ReportsComponent } from "./Components/reports/reports.component";
     HttpClientModule,
     FormsModule,
     LeafletModule,
+    FusionChartsModule,
   ],
   providers: [
     {

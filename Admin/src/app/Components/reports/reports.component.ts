@@ -8,12 +8,33 @@ import { Component, OnInit } from "@angular/core";
 })
 export class ReportsComponent implements OnInit {
   stats: any;
+  dataSource: any = {
+    data: [], // Initialize the data array here
+    chart: {
+      xAxisName: "Country",
+      yAxisName: "Number Of Houses",
+      // numberSuffix: "K",
+      theme: "fusion",
+    },
+  };
+
   constructor(private statsService: StatsService) {}
 
   ngOnInit(): void {
     this.statsService.getStats().subscribe((stats) => {
       this.stats = stats;
+
+      this.stats.housesByRegion.forEach(
+        (element: { _id: any; count: number }) => {
+          this.dataSource.data.push({
+            label: element._id,
+            value: element.count,
+          });
+        }
+      );
+
       console.log(this.stats);
+      console.log(this.dataSource);
     });
   }
 }

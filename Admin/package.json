@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
     "@asymmetrik/ngx-leaflet": "^16.0.1",
+    "angular-fusioncharts": "^4.0.3",
     "bootstrap": "^5.3.1",
     "bootstrap-icons": "^1.11.0",
     "leaflet": "^1.9.4",
