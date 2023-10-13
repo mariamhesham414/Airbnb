@@ -158,3 +158,27 @@ exports.getHousesByCategory = async (req, res, next) => {
     return next(new AppError(error.message, 500));
   }
 };
+
+exports.searchHousesByRegion = async (req, res, next) => {
+  try {
+    const { region } = req.query;
+
+    const query = {};
+
+    if (region) {
+      query.region = region;
+    }
+
+    const houses = await House.find(query).populate("category");
+
+    res.status(200).json({
+      status: "success",
+      houseCount: houses.length,
+      data: {
+        houses,
+      },
+    });
+  } catch (error) {
+    next(new AppError(error.message, 500));
+  }
+};

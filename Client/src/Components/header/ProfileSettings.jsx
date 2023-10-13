@@ -96,7 +96,7 @@ const ProfileSettings = () => {
         <div className=""></div>
       </div>
       <div className=" d-flex align-items-center justify-content-center mx-2 ">
-        <div className="mx-2 " style={{ fontSize: "18px" }}>
+        <div className="mx-2 " style={{ fontSize: "16px" ,fontWeight:'bold'}}>
           {" "}
           <Link
             style={{ textDecoration: "none", color: "#000" }}
@@ -109,18 +109,19 @@ const ProfileSettings = () => {
         <div className="rightDiv2 mx-2">
           {/* <i className="fa-solid fa-globe fs-5" ></i> */}
           <select
+          style={{ fontSize: "14px" }}
             className="form-select "
             id="language-select"
             onChange={onChangeLanguage}
           >
-            <option selected>
+            <option  selected>
               {lanuguage == "ar" ? "العربية" : "English"}
             </option>
             <option value="en">English</option>
             <option value="ar"> العربية</option>
           </select>
         </div>
-        <div className="dropdown " onClick={toggleDropdown}>
+        <div className="dropdown  " onClick={toggleDropdown}>
           <div
             className="main_Header_icon_dropdown  py-2 d-flex align-items-center justify-content-around mx-2 "
             onClick={toggleDropdown}

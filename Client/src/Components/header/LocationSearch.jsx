@@ -6,23 +6,13 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 // react icons
 import { IoSearchCircleSharp } from "react-icons/io5";
-import { pink } from "@mui/material/colors";
-import { Dropdown } from "@mui/base/Dropdown";
-import { Menu } from "@mui/base/Menu";
 import { MenuButton } from "@mui/base/MenuButton";
-import Modal from "@mui/material/Modal";
 import { MenuItem, menuItemClasses } from "@mui/base/MenuItem";
 import { styled } from "@mui/system";
 import { ButtonBase, Tab, Tabs } from "@mui/material";
 import Container from "@mui/material/Container";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { LocalizationProvider } from "@mui/x-date-pickers-pro";
-import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
-import { DateRangeCalendar } from "@mui/x-date-pickers-pro/DateRangeCalendar";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import PropTypes from "prop-types";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { Button } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import "./LocationSearch.css";
 import { useTranslation } from "react-i18next";
@@ -119,23 +109,6 @@ export default function LocationSearch() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  // const createHandleMenuClick = (menuItem) => {
-  //     return () => {
-  //         console.log(`Clicked on ${menuItem}`);
-  //     };
-  // };
-
-  // const [modalDisplay, setModalDisplay] = useState('none');
-
-  // const closeModal = () => {
-  //     setModalDisplay('none');
-  // };
-
-  // const handleModalClick = (event) => {
-  //     if (event.target === modalRef.current) {
-  //         closeModal();
-  //     }
-  // };
   const [moveInOptionsSearchLocation, setmoveInOptionsSearchLocation] =
     React.useState(false);
   const [
@@ -158,258 +131,6 @@ export default function LocationSearch() {
       setmoveInOptionsSearchLocation(false);
       setmoveInOptionsSearchGuests(true);
       setmoveInOptionsSearcCheckInAndCheckOut(false);
-    }
-  };
-  const [FlexibleWeekendOption, setFlexibleWeekendOption] =
-    React.useState(false);
-  const [FlexibleWeekOption, setFlexibleWeekOption] = React.useState(false);
-  const [FlexibleMonthOption, setFlexibleMonthOption] = React.useState(true);
-  const moveInFlexibleOptions = (CurrentFlexibleOption) => {
-    if (CurrentFlexibleOption == "Month") {
-      setFlexibleWeekendOption(false);
-      setFlexibleWeekOption(false);
-      setFlexibleMonthOption(true);
-    } else if (CurrentFlexibleOption == "Week") {
-      setFlexibleWeekendOption(false);
-      setFlexibleWeekOption(true);
-      setFlexibleMonthOption(false);
-    } else if (CurrentFlexibleOption == "Weekend") {
-      setFlexibleWeekendOption(true);
-      setFlexibleWeekOption(false);
-      setFlexibleMonthOption(false);
-    }
-  };
-  const [
-    moveInOptionsSearchLocationFlexible,
-    setmoveInOptionsSearchLocationFlexible,
-  ] = React.useState(false);
-  const [
-    moveInOptionsSearchLocationEurope,
-    setmoveInOptionsSearchLocationEurope,
-  ] = React.useState(false);
-  const [
-    moveInOptionsSearchLocationItaly,
-    setmoveInOptionsSearchLocationItaly,
-  ] = React.useState(false);
-  const [
-    moveInOptionsSearchLocationUnitedStates,
-    setmoveInOptionsSearchLocationUnitedStates,
-  ] = React.useState(false);
-  const [
-    moveInOptionsSearchLocationTurkey,
-    setmoveInOptionsSearchLocationTurkey,
-  ] = React.useState(false);
-  const [
-    moveInOptionsSearchLocationAfrica,
-    setmoveInOptionsSearchLocationAfrica,
-  ] = React.useState(false);
-
-  const SearchByRegion = (CurrentRegion) => {
-    if (CurrentRegion == "Flexible") {
-      setmoveInOptionsSearchLocationFlexible(
-        !moveInOptionsSearchLocationFlexible
-      );
-      setmoveInOptionsSearchLocationEurope(false);
-      setmoveInOptionsSearchLocationItaly(false);
-      setmoveInOptionsSearchLocationUnitedStates(false);
-      setmoveInOptionsSearchLocationTurkey(false);
-      setmoveInOptionsSearchLocationAfrica(false);
-      // handleOpen()
-    } else if (CurrentRegion == "Europe") {
-      setmoveInOptionsSearchLocationFlexible(false);
-      setmoveInOptionsSearchLocationEurope(!moveInOptionsSearchLocationEurope);
-      setmoveInOptionsSearchLocationItaly(false);
-      setmoveInOptionsSearchLocationUnitedStates(false);
-      setmoveInOptionsSearchLocationTurkey(false);
-      setmoveInOptionsSearchLocationAfrica(false);
-    } else if (CurrentRegion == "Italy") {
-      setmoveInOptionsSearchLocationFlexible(false);
-      setmoveInOptionsSearchLocationEurope(false);
-      setmoveInOptionsSearchLocationItaly(!moveInOptionsSearchLocationItaly);
-      setmoveInOptionsSearchLocationUnitedStates(false);
-      setmoveInOptionsSearchLocationTurkey(false);
-      setmoveInOptionsSearchLocationAfrica(false);
-    } else if (CurrentRegion == "UnitedStates") {
-      setmoveInOptionsSearchLocationFlexible(false);
-      setmoveInOptionsSearchLocationEurope(false);
-      setmoveInOptionsSearchLocationItaly(false);
-      setmoveInOptionsSearchLocationUnitedStates(
-        !moveInOptionsSearchLocationUnitedStates
-      );
-      setmoveInOptionsSearchLocationTurkey(false);
-      setmoveInOptionsSearchLocationAfrica(false);
-    } else if (CurrentRegion == "Turkey") {
-      setmoveInOptionsSearchLocationFlexible(false);
-      setmoveInOptionsSearchLocationEurope(false);
-      setmoveInOptionsSearchLocationItaly(false);
-      setmoveInOptionsSearchLocationUnitedStates(false);
-      setmoveInOptionsSearchLocationTurkey(!moveInOptionsSearchLocationTurkey);
-      setmoveInOptionsSearchLocationAfrica(false);
-    } else if (CurrentRegion == "Africa") {
-      setmoveInOptionsSearchLocationFlexible(false);
-      setmoveInOptionsSearchLocationEurope(false);
-      setmoveInOptionsSearchLocationItaly(false);
-      setmoveInOptionsSearchLocationUnitedStates(false);
-      setmoveInOptionsSearchLocationTurkey(false);
-      setmoveInOptionsSearchLocationAfrica(!moveInOptionsSearchLocationAfrica);
-    }
-  };
-  const [JanuaryMonth, setJanuaryMonth] = React.useState(true);
-  const [FebruaryMonth, setFebruaryMonth] = React.useState(false);
-  const [MarchMonth, setMarchMonth] = React.useState(false);
-  const [AprilMonth, setAprilMonth] = React.useState(false);
-  const [MayMonth, setMayMonth] = React.useState(false);
-  const [JuneMonth, setJuneMonth] = React.useState(false);
-  const [JulyMonth, setJulyMonth] = React.useState(false);
-  const [AugustMonth, setAugustMonth] = React.useState(false);
-  const [SeptemberMonth, setSeptemberMonth] = React.useState(false);
-  const [OctoberMonth, setOctoberMonth] = React.useState(false);
-  const [NovemberMonth, setNovemberMonth] = React.useState(false);
-  const [DecemberMonth, setDecemberMonth] = React.useState(false);
-
-  const slectMonthsOptionsCarsoul = (CurrentMonth) => {
-    if (CurrentMonth == "January") {
-      setJanuaryMonth(!JanuaryMonth);
-    } else if (CurrentMonth == "February") {
-      setFebruaryMonth(!FebruaryMonth);
-    } else if (CurrentMonth == "March") {
-      setMarchMonth(!MarchMonth);
-    } else if (CurrentMonth == "April") {
-      setAprilMonth(!AprilMonth);
-    } else if (CurrentMonth == "May") {
-      setMayMonth(!MayMonth);
-    } else if (CurrentMonth == "June") {
-      setJuneMonth(!JuneMonth);
-    } else if (CurrentMonth == "July") {
-      setJulyMonth(!JulyMonth);
-    } else if (CurrentMonth == "August") {
-      setAugustMonth(!AugustMonth);
-    } else if (CurrentMonth == "September") {
-      setSeptemberMonth(!SeptemberMonth);
-    } else if (CurrentMonth == "October") {
-      setOctoberMonth(!OctoberMonth);
-    } else if (CurrentMonth == "November") {
-      setNovemberMonth(!NovemberMonth);
-    } else if (CurrentMonth == "December") {
-      setDecemberMonth(!DecemberMonth);
-    }
-  };
-  const [AdultsGuest, setAdultsGuest] = React.useState(0);
-  const [ChildrenGuest, setChildrenGuest] = React.useState(0);
-  const [InfantsGuest, setInfantsGuest] = React.useState(0);
-  const [PetsGuest, setPetsGuest] = React.useState(0);
-  const [GuestsPlusBTNAdults, setGuestsPlusBTNAdults] = React.useState(false);
-  const [GuestsMinusBTNAdults, setGuestsMinusBTNAdults] = React.useState(true);
-  const [GuestsPlusBTNChildren, setGuestsPlusBTNChildren] =
-    React.useState(false);
-  const [GuestsMinusBTNChildren, setGuestsMinusBTNChildren] =
-    React.useState(true);
-  const [GuestsPlusBTNInfants, setGuestsPlusBTNInfants] = React.useState(false);
-  const [GuestsMinusBTNInfants, setGuestsMinusBTNInfants] =
-    React.useState(true);
-  const [GuestsPlusBTNPets, setGuestsPlusBTNPets] = React.useState(false);
-  const [GuestsMinusBTNPets, setGuestsMinusBTNPets] = React.useState(true);
-
-  const GuestsNumberPlus = (target) => {
-    if (target == "Adults") {
-      if (AdultsGuest >= 0 && AdultsGuest < 16) {
-        setAdultsGuest(AdultsGuest + 1);
-        setGuestsPlusBTNAdults(false);
-        if (AdultsGuest >= 0) {
-          setGuestsMinusBTNAdults(false);
-        } else {
-          setGuestsMinusBTNAdults(true);
-        }
-      } else if (AdultsGuest >= 16) {
-        setGuestsPlusBTNAdults(true);
-      }
-    } else if (target == "Children") {
-      if (ChildrenGuest >= 0 && ChildrenGuest < 16) {
-        setChildrenGuest(ChildrenGuest + 1);
-        setGuestsPlusBTNChildren(false);
-        if (ChildrenGuest >= 0) {
-          setGuestsMinusBTNChildren(false);
-        } else {
-          setGuestsMinusBTNChildren(true);
-        }
-      } else if (ChildrenGuest >= 16) {
-        setGuestsPlusBTNChildren(true);
-      }
-    } else if (target == "Infants") {
-      if (InfantsGuest >= 0 && InfantsGuest < 5) {
-        setInfantsGuest(InfantsGuest + 1);
-        setGuestsPlusBTNInfants(false);
-        if (InfantsGuest >= 0) {
-          setGuestsMinusBTNInfants(false);
-        } else {
-          setGuestsMinusBTNInfants(true);
-        }
-      } else if (InfantsGuest >= 5) {
-        setGuestsPlusBTNInfants(true);
-      }
-    } else if (target == "Pets") {
-      if (PetsGuest >= 0 && PetsGuest < 5) {
-        setPetsGuest(PetsGuest + 1);
-        setGuestsPlusBTNPets(false);
-        if (PetsGuest >= 0) {
-          setGuestsMinusBTNPets(false);
-        } else {
-          setGuestsMinusBTNPets(true);
-        }
-      } else if (PetsGuest >= 5) {
-        setGuestsPlusBTNPets(true);
-      }
-    }
-  };
-  const GuestsNumberMinus = (target) => {
-    if (target == "Adults") {
-      if (AdultsGuest >= 1 && AdultsGuest <= 16) {
-        setAdultsGuest(AdultsGuest - 1);
-        setGuestsPlusBTNAdults(false);
-        if (AdultsGuest > 1) {
-          setGuestsMinusBTNAdults(false);
-        } else {
-          setGuestsMinusBTNAdults(true);
-        }
-      } else if (AdultsGuest > 16) {
-        setGuestsPlusBTNAdults(true);
-      }
-    } else if (target == "Children") {
-      if (ChildrenGuest >= 1 && ChildrenGuest <= 16) {
-        setChildrenGuest(ChildrenGuest - 1);
-        setGuestsPlusBTNChildren(false);
-        if (ChildrenGuest > 1) {
-          setGuestsMinusBTNChildren(false);
-        } else {
-          setGuestsMinusBTNChildren(true);
-        }
-      } else if (ChildrenGuest > 16) {
-        setGuestsPlusBTNChildren(true);
-      }
-    } else if (target == "Infants") {
-      if (InfantsGuest >= 1 && InfantsGuest <= 5) {
-        setInfantsGuest(InfantsGuest - 1);
-        setGuestsPlusBTNInfants(false);
-        if (InfantsGuest > 1) {
-          setGuestsMinusBTNInfants(false);
-        } else {
-          setGuestsMinusBTNInfants(true);
-        }
-      } else if (InfantsGuest > 5) {
-        setGuestsPlusBTNInfants(true);
-      }
-    } else if (target == "Pets") {
-      if (PetsGuest >= 1 && PetsGuest <= 5) {
-        setPetsGuest(PetsGuest - 1);
-        setGuestsPlusBTNPets(false);
-        if (PetsGuest > 1) {
-          setGuestsMinusBTNPets(false);
-        } else {
-          setGuestsMinusBTNPets(true);
-        }
-      } else if (PetsGuest > 5) {
-        setGuestsPlusBTNPets(true);
-      }
     }
   };
 
@@ -502,527 +223,46 @@ export default function LocationSearch() {
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0}>
-            <div className="bar p-0 m-0" style={{ height: "50%" }}>
-              <Dropdown>
-                <TriggerButton
-                  onClick={() => {
-                    moveInOptionsSearchTabsFunc("Location");
-                  }}
-                  className={`location ${
-                    moveInOptionsSearchLocation ? "actv" : ""
-                  } rounded-pill border-0 `}
+            <div className="bar p-0 m-0" style={{ height: "10%" }}>
+                <div
+                  className='rounded-pill border-0'
                 >
-                  <p className="ps-3 BarTitle text-start">{t("Location")}</p>
+                  <p className="ps-3 BarTitle text-start">{t("Locationing")}</p>
                   <input type="text" placeholder="Where are you going?" />
-                </TriggerButton>
-                <Menu
-                  style={{ zIndex: "20" }}
-                  slots={{ listbox: StyledListbox }}
+                </div>
+                <div
+                  className='rounded-pill border-0'
                 >
-                  <div className="p-4">
-                    <div>
-                      <p style={{ fontWeight: "bold" }}>{t("region")}</p>
-                    </div>
-                    <div className="d-flex">
-                      <div>
-                        <img
-                          onClick={() => {
-                            SearchByRegion("Flexible");
-                          }}
-                          width={"100rem"}
-                          className={`m-2 ${
-                            moveInOptionsSearchLocationFlexible
-                              ? "mapActive"
-                              : ""
-                          }  map rounded`}
-                          src="https://a0.muscache.com/pictures/f9ec8a23-ed44-420b-83e5-10ff1f071a13.jpg"
-                        />
-                        <p className="ps-2"> {t("flexible")}</p>
-                      </div>
-                      <div>
-                        <img
-                          onClick={() => {
-                            SearchByRegion("Europe");
-                          }}
-                          width={"100rem"}
-                          className={`m-2 ${
-                            moveInOptionsSearchLocationEurope ? "mapActive" : ""
-                          }  map rounded`}
-                          src="https://a0.muscache.com/im/pictures/7b5cf816-6c16-49f8-99e5-cbc4adfd97e2.jpg?im_w=320"
-                        />
-                        <p className="ps-2">{t("Europe")}</p>
-                      </div>
-                      <div>
-                        <img
-                          onClick={() => {
-                            SearchByRegion("Italy");
-                          }}
-                          width={"100rem"}
-                          className={`m-2 ${
-                            moveInOptionsSearchLocationItaly ? "mapActive" : ""
-                          }  map rounded`}
-                          src="https://a0.muscache.com/im/pictures/ea5598d7-2b07-4ed7-84da-d1eabd9f2714.jpg?im_w=320"
-                        />
-                        <p className="ps-2">{t("Italy")}</p>
-                      </div>
-                    </div>
-                    <div className="d-flex">
-                      <div>
-                        <img
-                          onClick={() => {
-                            SearchByRegion("UnitedStates");
-                          }}
-                          width={"100rem"}
-                          className={`m-2 ${
-                            moveInOptionsSearchLocationUnitedStates
-                              ? "mapActive"
-                              : ""
-                          }  map rounded`}
-                          src="https://a0.muscache.com/im/pictures/4e762891-75a3-4fe1-b73a-cd7e673ba915.jpg?im_w=320"
-                        />
-                        <p className="ps-2">{t("UnitedStates")}</p>
-                      </div>
-                      <div>
-                        <img
-                          onClick={() => {
-                            SearchByRegion("Turkey");
-                          }}
-                          width={"100rem"}
-                          className={`m-2 ${
-                            moveInOptionsSearchLocationTurkey ? "mapActive" : ""
-                          }  map rounded`}
-                          src="https://a0.muscache.com/im/pictures/97d76097-22b3-4d87-9459-ad1b90b18d2f.jpg?im_w=320"
-                        />
-                        <p className="ps-2">{t("Turkey")}</p>
-                      </div>
-                      <div>
-                        <img
-                          onClick={() => {
-                            SearchByRegion("Africa");
-                          }}
-                          width={"100rem"}
-                          className={`m-2 ${
-                            moveInOptionsSearchLocationAfrica ? "mapActive" : ""
-                          }  map rounded`}
-                          src="https://a0.muscache.com/im/pictures/7e9673a5-4164-4708-a047-8d281b5980e7.jpg?im_w=320"
-                        />
-                        <p className="ps-2">{t("Africa")}</p>
-                      </div>
-                    </div>
-                  </div>
-                </Menu>
-              </Dropdown>
-
-              <Dropdown>
-                <TriggerButton
-                  onClick={() => {
-                    moveInOptionsSearchTabsFunc("CheckInAndCheckOut");
-                  }}
-                  className={`Date ${
-                    moveInOptionsSearchCheckInAndCheckOut ? "actv" : ""
-                  }  rounded-pill  border-0 `}
-                >
-                  <p className="px-3 BarTitle text-start">{t("Check")}</p>
+                  <p className="px-3 BarTitle text-start">{t("CheckIn")}</p>
                   <input
+                  disabled
                     className="px-3"
-                    disabled
                     type="text"
                     placeholder="Add dates"
                   />
-                </TriggerButton>
-                <Menu
-                  style={{ zIndex: "20" }}
-                  slots={{ listbox: StyledListbox }}
-                >
-                  <div className="p-3">
-                    <div
-                      style={{ backgroundColor: "#ebebeb " }}
-                      className="p-2 rounded-pill w-50 d-flex mx-auto justify-content-evenly"
-                    >
-                      <button
-                        style={{ backgroundColor: "#ebebeb " }}
-                        type="button"
-                        className="btn btn-light rounded-pill px-4 border-0 DateType "
-                        onClick={() => {
-                          toggleDate();
-                        }}
-                      >
-                        {t("Dates")}
-                      </button>
-                      <button
-                        style={{ backgroundColor: "#ebebeb " }}
-                        type="button"
-                        className="btn btn-light rounded-pill px-4 border-0 DateType"
-                      >
-                        {t("Months")}
-                      </button>
-                      <button
-                        style={{ backgroundColor: "#ebebeb " }}
-                        type="button"
-                        className="btn btn-light rounded-pill px-4 border-0 DateType"
-                        onClick={() => {
-                          toggleDate();
-                        }}
-                      >
-                        {t("Flexible")}
-                      </button>
-                    </div>
-                    <div
-                      className="p-0 m-0"
-                      style={{
-                        display: isFlexible == true ? "none" : "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DemoContainer components={["DateRangeCalendar"]}>
-                          <DateRangeCalendar
-                            currentMonthCalendarPosition={1}
-                            disablePast
-                          />
-                        </DemoContainer>
-                      </LocalizationProvider>
-                    </div>
-                    <div
-                      className="p-0 m-0 d-flex flex-column align-items-center"
-                      style={{ display: isFlexible == true ? "flex" : "none" }}
-                    >
-                      <h6
-                        style={{
-                          display: isFlexible == true ? "flex" : "none",
-                        }}
-                        className="mt-5"
-                      >
-                        {t("staydata")}
-                      </h6>
-                      <div
-                        style={{
-                          display: isFlexible == true ? "flex" : "none",
-                        }}
-                      >
-                        <button
-                          onClick={() => {
-                            moveInFlexibleOptions("Weekend");
-                          }}
-                          type="button"
-                          className={` ${
-                            FlexibleWeekendOption ? "active" : ""
-                          } btn btn-outline-dark rounded-pill mx-1 my-2`}
-                        >
-                          {t("Weekend")}
-                        </button>
-                        <button
-                          onClick={() => {
-                            moveInFlexibleOptions("Week");
-                          }}
-                          type="button"
-                          className={` ${
-                            FlexibleWeekOption ? "active" : ""
-                          } btn btn-outline-dark rounded-pill mx-1 my-2`}
-                        >
-                          {t("Week")}
-                        </button>
-                        <button
-                          onClick={() => {
-                            moveInFlexibleOptions("Month");
-                          }}
-                          type="button"
-                          className={` ${
-                            FlexibleMonthOption ? "active" : ""
-                          } btn btn-outline-dark rounded-pill mx-1 my-2`}
-                        >
-                          {t("Month")}
-                        </button>
-                      </div>
-                      <h6
-                        style={{
-                          display: isFlexible == true ? "flex" : "none",
-                        }}
-                        className="mt-4"
-                      >
-                        {t("When")}
-                      </h6>
-                      <Box
-                        style={{
-                          display: isFlexible == true ? "flex" : "none",
-                        }}
-                        sx={{
-                          maxWidth: { sm: 700 },
-                          bgcolor: "background.paper",
-                          marginBottom: 2,
-                        }}
-                      >
-                        <Tabs
-                          value={value2}
-                          onChange={handleChange2}
-                          variant="scrollable"
-                          scrollButtons
-                          allowScrollButtonsMobile
-                          aria-label="scrollable force tabs example"
-                        >
-                          <Tab
-                            icon={<CalendarTodayIcon />}
-                            onClick={() => {
-                              slectMonthsOptionsCarsoul("January");
-                            }}
-                            className={` ${JanuaryMonth ? "slectedDate" : ""} `}
-                            label="January"
-                          />
-                          <Tab
-                            icon={<CalendarTodayIcon />}
-                            onClick={() => {
-                              slectMonthsOptionsCarsoul("February");
-                            }}
-                            className={` ${
-                              FebruaryMonth ? "slectedDate" : ""
-                            } `}
-                            label="February"
-                          />
-                          <Tab
-                            icon={<CalendarTodayIcon />}
-                            onClick={() => {
-                              slectMonthsOptionsCarsoul("March");
-                            }}
-                            className={` ${MarchMonth ? "slectedDate" : ""} `}
-                            label="March"
-                          />
-                          <Tab
-                            icon={<CalendarTodayIcon />}
-                            onClick={() => {
-                              slectMonthsOptionsCarsoul("April");
-                            }}
-                            className={` ${AprilMonth ? "slectedDate" : ""} `}
-                            label="April"
-                          />
-                          <Tab
-                            icon={<CalendarTodayIcon />}
-                            onClick={() => {
-                              slectMonthsOptionsCarsoul("May");
-                            }}
-                            className={` ${MayMonth ? "slectedDate" : ""} `}
-                            label="May"
-                          />
-                          <Tab
-                            icon={<CalendarTodayIcon />}
-                            onClick={() => {
-                              slectMonthsOptionsCarsoul("June");
-                            }}
-                            className={` ${JuneMonth ? "slectedDate" : ""} `}
-                            label="June"
-                          />
-                          <Tab
-                            icon={<CalendarTodayIcon />}
-                            onClick={() => {
-                              slectMonthsOptionsCarsoul("July");
-                            }}
-                            className={` ${JulyMonth ? "slectedDate" : ""} `}
-                            label="July"
-                          />
-                          <Tab
-                            icon={<CalendarTodayIcon />}
-                            onClick={() => {
-                              slectMonthsOptionsCarsoul("August");
-                            }}
-                            className={` ${AugustMonth ? "slectedDate" : ""} `}
-                            label="August"
-                          />
-                          <Tab
-                            icon={<CalendarTodayIcon />}
-                            onClick={() => {
-                              slectMonthsOptionsCarsoul("September");
-                            }}
-                            className={` ${
-                              SeptemberMonth ? "slectedDate" : ""
-                            } `}
-                            label="September"
-                          />
-                          <Tab
-                            icon={<CalendarTodayIcon />}
-                            onClick={() => {
-                              slectMonthsOptionsCarsoul("October");
-                            }}
-                            className={` ${OctoberMonth ? "slectedDate" : ""} `}
-                            label="October"
-                          />
-                          <Tab
-                            icon={<CalendarTodayIcon />}
-                            onClick={() => {
-                              slectMonthsOptionsCarsoul("November");
-                            }}
-                            className={` ${
-                              NovemberMonth ? "slectedDate" : ""
-                            } `}
-                            label="November"
-                          />
-                          <Tab
-                            icon={<CalendarTodayIcon />}
-                            onClick={() => {
-                              slectMonthsOptionsCarsoul("December");
-                            }}
-                            className={` ${
-                              DecemberMonth ? "slectedDate" : ""
-                            } `}
-                            label="December"
-                          />
-                        </Tabs>
-                      </Box>
-                    </div>
                   </div>
-                </Menu>
-              </Dropdown>
-              <Dropdown>
-                <TriggerButton
-                  onClick={() => {
-                    moveInOptionsSearchTabsFunc("Guests");
-                  }}
-                  className={`guests ${
-                    moveInOptionsSearchGuests ? "actv" : ""
-                  } rounded-pill border-0 `}
+                <div
+                  className='rounded-pill border-0'
+                >
+                  <p className="px-3 BarTitle text-start">{t("CheckOut")}</p>
+                  <input
+                  disabled
+                    className="px-3"
+                    type="text"
+                    placeholder="Add dates"
+                  />
+                  </div>
+                  <div
+                  className='rounded-pill border-0'
                 >
                   <p className="px-3 BarTitle text-start">{t("Guests")}</p>
                   <input
+                  disabled
                     className="px-3"
-                    disabled
                     type="text"
                     placeholder="Add guests"
                   />
-                  {/* <span onClick={() => { toggleSearchBar() }}  ><i className="fa-solid fa-magnifying-glass"></i></span> */}
-                </TriggerButton>
-                <Menu
-                  style={{ zIndex: "20" }}
-                  slots={{ listbox: StyledListbox }}
-                >
-                  <ol className="list-group list-group-flush p-2">
-                    <li
-                      className="list-group-item d-flex justify-content-between align-items-start py-3"
-                      style={{ width: "350px" }}
-                    >
-                      <div className="ms-2 me-auto">
-                        <div className="fw-bold">{t("Adults")}</div>
-                        <span className="text-secondary">{t("reserDate")}</span>
-                      </div>
-                      <span className="rounded-pill d-flex">
-                        <button
-                          onClick={() => {
-                            GuestsNumberMinus("Adults");
-                          }}
-                          type="button"
-                          className={`${
-                            GuestsMinusBTNAdults ? "disabled" : ""
-                          } btn btn-outline-dark rounded-circle btn-sm`}
-                        >
-                          <i className="fa-solid fa-minus"></i>
-                        </button>
-                        <p className="p-2 m-0">{AdultsGuest}</p>
-                        <button
-                          onClick={() => {
-                            GuestsNumberPlus("Adults");
-                          }}
-                          type="button"
-                          className={` ${
-                            GuestsPlusBTNAdults ? "disabled" : ""
-                          }  btn btn-outline-dark rounded-circle btn-sm`}
-                        >
-                          <i className="fa-solid fa-plus"></i>
-                        </button>
-                      </span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-start py-3">
-                      <div className="ms-2 me-auto">
-                        <div className="fw-bold">{t("Children")}</div>
-                        <span className="text-secondary">{t("Ages")}</span>
-                      </div>
-                      <span className="rounded-pill d-flex">
-                        <button
-                          onClick={() => {
-                            GuestsNumberMinus("Children");
-                          }}
-                          type="button"
-                          className={`${
-                            GuestsMinusBTNChildren ? "disabled" : ""
-                          } btn btn-outline-dark rounded-circle btn-sm`}
-                        >
-                          <i className="fa-solid fa-minus"></i>
-                        </button>
-                        <p className="p-2 m-0">{ChildrenGuest}</p>
-                        <button
-                          onClick={() => {
-                            GuestsNumberPlus("Children");
-                          }}
-                          type="button"
-                          className={` ${
-                            GuestsPlusBTNChildren ? "disabled" : ""
-                          }  btn btn-outline-dark rounded-circle btn-sm`}
-                        >
-                          <i className="fa-solid fa-plus"></i>
-                        </button>
-                      </span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-start py-3">
-                      <div className="ms-2 me-auto">
-                        <div className="fw-bold">{t("Infants")}</div>
-                        <span className="text-secondary">{t("Under")}</span>
-                      </div>
-                      <span className="rounded-pill d-flex">
-                        <button
-                          onClick={() => {
-                            GuestsNumberMinus("Infants");
-                          }}
-                          type="button"
-                          className={`${
-                            GuestsMinusBTNInfants ? "disabled" : ""
-                          } btn btn-outline-dark rounded-circle btn-sm`}
-                        >
-                          <i className="fa-solid fa-minus"></i>
-                        </button>
-                        <p className="p-2 m-0">{InfantsGuest}</p>
-                        <button
-                          onClick={() => {
-                            GuestsNumberPlus("Infants");
-                          }}
-                          type="button"
-                          className={` ${
-                            GuestsPlusBTNInfants ? "disabled" : ""
-                          }  btn btn-outline-dark rounded-circle btn-sm`}
-                        >
-                          <i className="fa-solid fa-plus"></i>
-                        </button>
-                      </span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-start py-3">
-                      <div className="ms-2 me-auto">
-                        <div className="fw-bold ">{t("Pets")}</div>
-                        <a className="link-secondary">{t("BringAnimal")}</a>
-                      </div>
-                      <span className="rounded-pill d-flex">
-                        <button
-                          onClick={() => {
-                            GuestsNumberMinus("Pets");
-                          }}
-                          type="button"
-                          className={`${
-                            GuestsMinusBTNPets ? "disabled" : ""
-                          } btn btn-outline-dark rounded-circle btn-sm`}
-                        >
-                          <i className="fa-solid fa-minus"></i>
-                        </button>
-                        <p className="p-2 m-0">{PetsGuest}</p>
-                        <button
-                          onClick={() => {
-                            GuestsNumberPlus("Pets");
-                          }}
-                          type="button"
-                          className={` ${
-                            GuestsPlusBTNPets ? "disabled" : ""
-                          }  btn btn-outline-dark rounded-circle btn-sm`}
-                        >
-                          <i className="fa-solid fa-plus"></i>
-                        </button>
-                      </span>
-                    </li>
-                  </ol>
-                </Menu>
-              </Dropdown>
+                  </div>
               <span
                 onClick={() => {
                   moveInOptionsSearchTabsFunc("Guests");
@@ -1040,305 +280,52 @@ export default function LocationSearch() {
             </div>
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
-            <div className="bar p-0 m-0" style={{ height: "50%" }}>
-              <Dropdown>
-                <TriggerButton
-                  onClick={() => {
-                    moveInOptionsSearchTabsFunc("Location");
-                  }}
-                  className={`location ${
-                    moveInOptionsSearchLocation ? "actv" : ""
-                  } rounded-pill border-0 `}
+            <div className="bar2 p-0 m-0" style={{ height: "50%" }}>
+            <div className="bar p-0 m-0" style={{ height: "10%" }}>
+                <div
+                  className='rounded-pill border-0'
                 >
-                  <p className="px-3 BarTitle text-start">{t("Location")}</p>
-                  <input
-                    className="px-3"
-                    type="text"
-                    placeholder="Where are you going?"
-                  />
-                </TriggerButton>
-                <Menu
-                  style={{ zIndex: "20" }}
-                  slots={{ listbox: StyledListbox }}
-                >
-                  <div className="p-4">
-                    <div>
-                      <p style={{ fontWeight: "bold" }}>{t("region")}</p>
-                    </div>
-                    <div className="d-flex">
-                      <div>
-                        <img
-                          onClick={() => {
-                            SearchByRegion("Flexible");
-                          }}
-                          width={"100rem"}
-                          className={`m-2 ${
-                            moveInOptionsSearchLocationFlexible
-                              ? "mapActive"
-                              : ""
-                          }  map rounded`}
-                          src="https://a0.muscache.com/pictures/f9ec8a23-ed44-420b-83e5-10ff1f071a13.jpg"
-                        />
-                        <p className="ps-2">{t("flexible")}</p>
-                      </div>
-                      <div>
-                        <img
-                          onClick={() => {
-                            SearchByRegion("Europe");
-                          }}
-                          width={"100rem"}
-                          className={`m-2 ${
-                            moveInOptionsSearchLocationEurope ? "mapActive" : ""
-                          }  map rounded`}
-                          src="https://a0.muscache.com/im/pictures/7b5cf816-6c16-49f8-99e5-cbc4adfd97e2.jpg?im_w=320"
-                        />
-                        <p className="ps-2">{t("Europe")}</p>
-                      </div>
-                      <div>
-                        <img
-                          onClick={() => {
-                            SearchByRegion("Italy");
-                          }}
-                          width={"100rem"}
-                          className={`m-2 ${
-                            moveInOptionsSearchLocationItaly ? "mapActive" : ""
-                          }  map rounded`}
-                          src="https://a0.muscache.com/im/pictures/ea5598d7-2b07-4ed7-84da-d1eabd9f2714.jpg?im_w=320"
-                        />
-                        <p className="ps-2">{t("Italy")}</p>
-                      </div>
-                    </div>
-                    <div className="d-flex">
-                      <div>
-                        <img
-                          onClick={() => {
-                            SearchByRegion("UnitedStates");
-                          }}
-                          width={"100rem"}
-                          className={`m-2 ${
-                            moveInOptionsSearchLocationUnitedStates
-                              ? "mapActive"
-                              : ""
-                          }  map rounded`}
-                          src="https://a0.muscache.com/im/pictures/4e762891-75a3-4fe1-b73a-cd7e673ba915.jpg?im_w=320"
-                        />
-                        <p className="ps-2">{t("United States")}</p>
-                      </div>
-                      <div>
-                        <img
-                          onClick={() => {
-                            SearchByRegion("Turkey");
-                          }}
-                          width={"100rem"}
-                          className={`m-2 ${
-                            moveInOptionsSearchLocationTurkey ? "mapActive" : ""
-                          }  map rounded`}
-                          src="https://a0.muscache.com/im/pictures/97d76097-22b3-4d87-9459-ad1b90b18d2f.jpg?im_w=320"
-                        />
-                        <p className="ps-2">{t("Turkey")}</p>
-                      </div>
-                      <div>
-                        <img
-                          onClick={() => {
-                            SearchByRegion("Africa");
-                          }}
-                          width={"100rem"}
-                          className={`m-2 ${
-                            moveInOptionsSearchLocationAfrica ? "mapActive" : ""
-                          }  map rounded`}
-                          src="https://a0.muscache.com/im/pictures/7e9673a5-4164-4708-a047-8d281b5980e7.jpg?im_w=320"
-                        />
-                        <p className="ps-2">{t("Africa")}</p>
-                      </div>
-                    </div>
-                  </div>
-                </Menu>
-              </Dropdown>
-              <Dropdown>
-                <TriggerButton
-                  onClick={() => {
-                    moveInOptionsSearchTabsFunc("CheckInAndCheckOut");
-                  }}
-                  className={`Date ${
-                    moveInOptionsSearchCheckInAndCheckOut ? "actv" : ""
-                  }  rounded-pill  border-0 `}
+                  <p className="ps-3 BarTitle text-start">{t("Locationing")}</p>
+                  <input type="text" placeholder="Where are you going?" />
+                </div>
+
+                <div
+                  className='rounded-pill border-0'
                 >
                   <p className="px-3 BarTitle text-start">{t("Date")}</p>
                   <input
+                  disabled
                     className="px-3"
-                    disabled
                     type="text"
                     placeholder="Add dates"
                   />
-                </TriggerButton>
-                <Menu
-                  style={{ zIndex: "20" }}
-                  slots={{ listbox: StyledListbox }}
+                  </div>
+                  <div
+                  className='rounded-pill border-0'
                 >
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer components={["DateRangeCalendar"]}>
-                      <DateRangeCalendar
-                        currentMonthCalendarPosition={1}
-                        disablePast
-                      />
-                    </DemoContainer>
-                  </LocalizationProvider>
-                </Menu>
-              </Dropdown>
-
-              <Dropdown>
-                <TriggerButton
-                  onClick={() => {
-                    moveInOptionsSearchTabsFunc("Guests");
-                  }}
-                  className={`guests ${
-                    moveInOptionsSearchGuests ? "actv" : ""
-                  } rounded-pill border-0 `}
-                >
-                  <p className="px-2 BarTitle text-start">{t("Guests")}</p>
+                  <p className="px-3 BarTitle text-start">{t("Guests")}</p>
                   <input
-                    className="px-2"
-                    disabled
+                  disabled
+                    className="px-3"
                     type="text"
                     placeholder="Add guests"
                   />
-                  {/* <span onClick={() => { toggleSearchBar() }}  ><i className="fa-solid fa-magnifying-glass"></i></span> */}
-                </TriggerButton>
-                <Menu
-                  style={{ zIndex: "20" }}
-                  slots={{ listbox: StyledListbox }}
+                  </div>
+              <span
+                onClick={() => {
+                  moveInOptionsSearchTabsFunc("Guests");
+                }}
+                className={`guests  rounded-pill border-0 `}
+              >
+                <span
+                  onClick={() => {
+                    toggleSearchBar();
+                  }}
                 >
-                  <ol className="list-group list-group-flush p-2">
-                    <li
-                      className="list-group-item d-flex justify-content-between align-items-start py-3"
-                      style={{ width: "350px" }}
-                    >
-                      <div className="ms-2 me-auto">
-                        <div className="fw-bold">{t("Adults")}</div>
-                        <span className="text-secondary">{t("reserDate")}</span>
-                      </div>
-                      <span className="rounded-pill d-flex">
-                        <button
-                          onClick={() => {
-                            GuestsNumberMinus("Adults");
-                          }}
-                          type="button"
-                          className={`${
-                            GuestsMinusBTNAdults ? "disabled" : ""
-                          } btn btn-outline-dark rounded-circle btn-sm`}
-                        >
-                          <i className="fa-solid fa-minus"></i>
-                        </button>
-                        <p className="p-2 m-0">{AdultsGuest}</p>
-                        <button
-                          onClick={() => {
-                            GuestsNumberPlus("Adults");
-                          }}
-                          type="button"
-                          className={` ${
-                            GuestsPlusBTNAdults ? "disabled" : ""
-                          }  btn btn-outline-dark rounded-circle btn-sm`}
-                        >
-                          <i className="fa-solid fa-plus"></i>
-                        </button>
-                      </span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-start py-3">
-                      <div className="ms-2 me-auto">
-                        <div className="fw-bold">{t("Children")}</div>
-                        <span className="text-secondary">{t("Ages")}</span>
-                      </div>
-                      <span className="rounded-pill d-flex">
-                        <button
-                          onClick={() => {
-                            GuestsNumberMinus("Children");
-                          }}
-                          type="button"
-                          className={`${
-                            GuestsMinusBTNChildren ? "disabled" : ""
-                          } btn btn-outline-dark rounded-circle btn-sm`}
-                        >
-                          <i className="fa-solid fa-minus"></i>
-                        </button>
-                        <p className="p-2 m-0">{t("Children")}</p>
-                        <button
-                          onClick={() => {
-                            GuestsNumberPlus("Children");
-                          }}
-                          type="button"
-                          className={` ${
-                            GuestsPlusBTNChildren ? "disabled" : ""
-                          }  btn btn-outline-dark rounded-circle btn-sm`}
-                        >
-                          <i className="fa-solid fa-plus"></i>
-                        </button>
-                      </span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-start py-3">
-                      <div className="ms-2 me-auto">
-                        <div className="fw-bold">{t("Infants")}</div>
-                        <span className="text-secondary">{t("Under")}</span>
-                      </div>
-                      <span className="rounded-pill d-flex">
-                        <button
-                          onClick={() => {
-                            GuestsNumberMinus("Infants");
-                          }}
-                          type="button"
-                          className={`${
-                            GuestsMinusBTNInfants ? "disabled" : ""
-                          } btn btn-outline-dark rounded-circle btn-sm`}
-                        >
-                          <i className="fa-solid fa-minus"></i>
-                        </button>
-                        <p className="p-2 m-0">{InfantsGuest}</p>
-                        <button
-                          onClick={() => {
-                            GuestsNumberPlus("Infants");
-                          }}
-                          type="button"
-                          className={` ${
-                            GuestsPlusBTNInfants ? "disabled" : ""
-                          }  btn btn-outline-dark rounded-circle btn-sm`}
-                        >
-                          <i className="fa-solid fa-plus"></i>
-                        </button>
-                      </span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-start py-3">
-                      <div className="ms-2 me-auto">
-                        <div className="fw-bold ">{t("Pets")}</div>
-                        <a className="link-secondary">{t("BringAnimal")}</a>
-                      </div>
-                      <span className="rounded-pill d-flex">
-                        <button
-                          onClick={() => {
-                            GuestsNumberMinus("Pets");
-                          }}
-                          type="button"
-                          className={`${
-                            GuestsMinusBTNPets ? "disabled" : ""
-                          } btn btn-outline-dark rounded-circle btn-sm`}
-                        >
-                          <i className="fa-solid fa-minus"></i>
-                        </button>
-                        <p className="p-2 m-0">{PetsGuest}</p>
-                        <button
-                          onClick={() => {
-                            GuestsNumberPlus("Pets");
-                          }}
-                          type="button"
-                          className={` ${
-                            GuestsPlusBTNPets ? "disabled" : ""
-                          }  btn btn-outline-dark rounded-circle btn-sm`}
-                        >
-                          <i className="fa-solid fa-plus"></i>
-                        </button>
-                      </span>
-                    </li>
-                  </ol>
-                </Menu>
-              </Dropdown>
+                  <i className="fa-solid fa-magnifying-glass"></i>
+                </span>
+              </span>
+            </div>
               <span
                 onClick={() => {
                   moveInOptionsSearchTabsFunc("Guests");
