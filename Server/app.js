@@ -12,6 +12,7 @@ const reservationRoute = require("./routes/reservationRoute");
 const reviewRoute = require("./routes/reviewRoute");
 const wishlistRoute = require("./routes/wishlistRoute");
 const categoryRoute = require("./routes/categoryRoute");
+const statsRoute = require("./routes/statsRoute");
 
 const app = express();
 const limiter = rateLimit({
@@ -34,6 +35,7 @@ app.use("/reservations", reservationRoute);
 app.use("/reviews", reviewRoute);
 app.use("/wishlists", wishlistRoute);
 app.use("/categories", categoryRoute);
+app.use("/stats", statsRoute);
 
 app.all("*", (req, res, next) => {
   const err = new AppError(`There is no route for this ${req.originalUrl}`);

@@ -4,7 +4,7 @@ const reservationController = require("./../controlleres/reservationController")
 const authController = require("./../controlleres/authController");
 
 router.get("/success", reservationController.createReservation);
-
+router.get("/stats", reservationController.stats);
 router.use(authController.protect);
 
 router.delete("/:id", reservationController.deleteReservation);

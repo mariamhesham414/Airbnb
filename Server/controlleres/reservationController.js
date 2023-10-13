@@ -234,3 +234,75 @@ exports.getMyReservations = async (req, res, next) => {
     return next(new AppError(error.message, 500));
   }
 };
+
+exports.stats = async (req, res) => {
+  try {
+    const pipeline = [
+      // Match all reservations
+      {
+        $match: {},
+      },
+      // Calculate total price
+      {
+        $group: {
+          _id: null,
+          totalPrice: { $sum: "$price" },
+          reservations: { $push: "$$ROOT" },
+        },
+      },
+      // Find the most reserved place
+      {
+        $project: {
+          _id: 0,
+          totalPrice: 1,
+          reservations: 1,
+          mostReservedPlace: {
+            $arrayElemAt: [
+              {
+                $map: {
+                  input: "$reservations",
+                  as: "reservation",
+                  in: {
+                    houseId: "$$reservation.houseId",
+                    totalReservations: {
+                      $size: {
+                        $filter: {
+                          input: "$reservations",
+                          as: "r",
+                          cond: {
+                            $eq: ["$$r.houseId", "$$reservation.houseId"],
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+              0,
+            ],
+          },
+        },
+      },
+    ];
+
+    // Execute the aggregation pipeline
+    const result = await Reservation.aggregate(pipeline);
+
+    // Send the result as a response
+    res.status(200).json({
+      success: true,
+      message:
+        "Total reservations price and most reserved place calculated successfully",
+      data: result[0],
+    });
+  } catch (error) {
+    // Handle error
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message:
+        "Error calculating total reservations price and most reserved place",
+      error: error.message,
+    });
+  }
+};
