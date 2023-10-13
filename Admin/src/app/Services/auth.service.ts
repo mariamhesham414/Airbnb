@@ -1,14 +1,14 @@
-import { CookieService } from 'ngx-cookie-service';
-import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { Observable, map } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { CookieService } from "ngx-cookie-service";
+import { Injectable } from "@angular/core";
+import { environment } from "../../environments/environment";
+import { Observable, map } from "rxjs";
+import { HttpClient } from "@angular/common/http";
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class AuthService {
   private isAuthenticated = false;
-  private userRole = '';
+  private userRole = "";
 
   constructor(
     private httpClient: HttpClient,
@@ -26,13 +26,13 @@ export class AuthService {
 
   login() {
     this.isAuthenticated = true;
-    this.userRole = 'admin';
+    this.userRole = "admin";
   }
 
   logout() {
     this.isAuthenticated = false;
-    this.userRole = '';
-    this.cookieService.delete('token');
+    this.userRole = "";
+    this.cookieService.delete("token");
   }
 
   isLoggedIn(): boolean {
@@ -40,17 +40,18 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
-    return this.userRole === 'admin';
+    return this.userRole === "admin";
   }
 
   getAuthToken(): string {
-    return this.cookieService.get('token');
+    return this.cookieService.get("token");
   }
 
   fetchUserData(): Observable<any> {
     return this.httpClient.get(`${environment.BaseApiURL}/users/getme`).pipe(
       map((response: any) => {
-        return response.data.user.role === 'admin';
+        console.log(response.data.user.role === "admin");
+        this.userRole = response.data.user.role === "admin" ? "admin" : "";
       })
     );
   }
