@@ -61,6 +61,7 @@ exports.payment = async (req, res, next) => {
             currency: "usd",
             product_data: {
               name: house.name,
+
               images: [
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaWQZyUWL5KqcqjDkmy8KLuUZGk_cvLGy8Hg&usqp=CAU",
               ],
@@ -77,6 +78,7 @@ exports.payment = async (req, res, next) => {
         req.user._id
       } `,
       cancel_url: "http://localhost:5173/failed",
+      customer_email: req.user.email,
     });
 
     res.status(200).json({
