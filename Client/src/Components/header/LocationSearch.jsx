@@ -16,6 +16,9 @@ import { createTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import "./LocationSearch.css";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { setHouses } from "../../Store/slices/houses";
+import axiosInstance from "../../AxiosConfig/instance";
 // // ====================== translate site functionality==================
 // const { t, i18n } = useTranslation();
 const Item = styled(Paper)(({ theme }) => ({
@@ -60,6 +63,23 @@ function a11yProps(index) {
 }
 
 export default function LocationSearch() {
+  const dispatch = useDispatch();
+  const [query, setQuery] = useState();
+
+  const searchByRegion = (e) => {
+    axiosInstance
+      .get("/houses/search", {
+        params: {
+          region: query,
+        },
+      })
+      .then((response) => {
+        // dispatch(setHouses(response.data.data.houses));
+        // console.log(response.data.data);
+        dispatch(setHouses(response.data.data));
+      });
+  };
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -224,45 +244,42 @@ export default function LocationSearch() {
           </Box>
           <CustomTabPanel value={value} index={0}>
             <div className="bar p-0 m-0" style={{ height: "10%" }}>
-                <div
-                  className='rounded-pill border-0'
-                >
-                  <p className="ps-3 BarTitle text-start">{t("Locationing")}</p>
-                  <input type="text" placeholder="Where are you going?" />
-                </div>
-                <div
-                  className='rounded-pill border-0'
-                >
-                  <p className="px-3 BarTitle text-start">{t("CheckIn")}</p>
-                  <input
+              <div className="rounded-pill border-0">
+                <p className="ps-3 BarTitle text-start">{t("Locationing")}</p>
+                <input
+                  style={{ fontSize: "1rem" }}
+                  type="text"
+                  placeholder="Africa , Turkey, Italy,Euroupe"
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </div>
+              <div className="rounded-pill border-0">
+                <p className="px-3 BarTitle text-start">{t("CheckIn")}</p>
+                <input
                   disabled
-                    className="px-3"
-                    type="text"
-                    placeholder="Add dates"
-                  />
-                  </div>
-                <div
-                  className='rounded-pill border-0'
-                >
-                  <p className="px-3 BarTitle text-start">{t("CheckOut")}</p>
-                  <input
+                  className="px-3"
+                  type="text"
+                  placeholder="Add dates"
+                />
+              </div>
+              <div className="rounded-pill border-0">
+                <p className="px-3 BarTitle text-start">{t("CheckOut")}</p>
+                <input
                   disabled
-                    className="px-3"
-                    type="text"
-                    placeholder="Add dates"
-                  />
-                  </div>
-                  <div
-                  className='rounded-pill border-0'
-                >
-                  <p className="px-3 BarTitle text-start">{t("Guests")}</p>
-                  <input
+                  className="px-3"
+                  type="text"
+                  placeholder="Add dates"
+                />
+              </div>
+              <div className="rounded-pill border-0">
+                <p className="px-3 BarTitle text-start">{t("Guests")}</p>
+                <input
                   disabled
-                    className="px-3"
-                    type="text"
-                    placeholder="Add guests"
-                  />
-                  </div>
+                  className="px-3"
+                  type="text"
+                  placeholder="Add guests"
+                />
+              </div>
               <span
                 onClick={() => {
                   moveInOptionsSearchTabsFunc("Guests");
@@ -271,6 +288,7 @@ export default function LocationSearch() {
               >
                 <span
                   onClick={() => {
+                    searchByRegion();
                     toggleSearchBar();
                   }}
                 >
@@ -281,51 +299,45 @@ export default function LocationSearch() {
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
             <div className="bar2 p-0 m-0" style={{ height: "50%" }}>
-            <div className="bar p-0 m-0" style={{ height: "10%" }}>
-                <div
-                  className='rounded-pill border-0'
-                >
+              <div className="bar p-0 m-0" style={{ height: "10%" }}>
+                <div className="rounded-pill border-0">
                   <p className="ps-3 BarTitle text-start">{t("Locationing")}</p>
                   <input type="text" placeholder="Where are you going?" />
                 </div>
 
-                <div
-                  className='rounded-pill border-0'
-                >
+                <div className="rounded-pill border-0">
                   <p className="px-3 BarTitle text-start">{t("Date")}</p>
                   <input
-                  disabled
+                    disabled
                     className="px-3"
                     type="text"
                     placeholder="Add dates"
                   />
-                  </div>
-                  <div
-                  className='rounded-pill border-0'
-                >
+                </div>
+                <div className="rounded-pill border-0">
                   <p className="px-3 BarTitle text-start">{t("Guests")}</p>
                   <input
-                  disabled
+                    disabled
                     className="px-3"
                     type="text"
                     placeholder="Add guests"
                   />
-                  </div>
-              <span
-                onClick={() => {
-                  moveInOptionsSearchTabsFunc("Guests");
-                }}
-                className={`guests  rounded-pill border-0 `}
-              >
+                </div>
                 <span
                   onClick={() => {
-                    toggleSearchBar();
+                    moveInOptionsSearchTabsFunc("Guests");
                   }}
+                  className={`guests  rounded-pill border-0 `}
                 >
-                  <i className="fa-solid fa-magnifying-glass"></i>
+                  <span
+                    onClick={() => {
+                      toggleSearchBar();
+                    }}
+                  >
+                    <i className="fa-solid fa-magnifying-glass"></i>
+                  </span>
                 </span>
-              </span>
-            </div>
+              </div>
               <span
                 onClick={() => {
                   moveInOptionsSearchTabsFunc("Guests");

@@ -27,6 +27,9 @@ const housesSlice = createSlice({
     setCategory(state, action) {
       state.category = action.payload;
     },
+    setHouses(state, action) {
+      state.houses = action.payload.houses;
+    },
   },
 
   extraReducers: (builder) => {
@@ -36,6 +39,6 @@ const housesSlice = createSlice({
   },
 });
 
-export const { setCategory } = housesSlice.actions;
+export const { setCategory, setHouses } = housesSlice.actions;
 export { fetchHouses };
 export default housesSlice.reducer;
