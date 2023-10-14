@@ -249,7 +249,7 @@ export default function LocationSearch() {
                 <input
                   style={{ fontSize: "1rem" }}
                   type="text"
-                  placeholder="Africa , Turkey, Italy,Euroupe"
+                  placeholder="Africa , Turkey, United States,Euroupe"
                   onChange={(e) => setQuery(e.target.value)}
                 />
               </div>
